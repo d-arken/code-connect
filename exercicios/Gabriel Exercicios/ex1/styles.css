@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+
+
+.btn {
+    width: 100px;
+    height: 70px;
+    font-size: px;
+    padding: 25px;
+    margin-top: 25px;
+}

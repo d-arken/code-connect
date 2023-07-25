@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Calculando média de um aluno</title>
+
+  <!--No meu script eu usei uma forma abreviada de IF e ELSE chamado operador ternário ou operador condicional, (?) é atribuido 
+  caso a condição seja verdadeira e (:) caso a condição seja falsa.-->
+</head>
+
+<body>
+  <div class="page">
+    <h1>Média do aluno</h1>
+    <form>
+      <p>Nome do aluno:
+        <input type="text" id="inNome" required>
+      </p>
+      <p>Digite sua 1° nota:
+        <input type="number" id="inNota1" step="0.10" min="0" max="10.00" required>
+      </p>
+
+      <p>Digite sua 2° nota:
+        <input type="number" id="inNota2" step="0.10" min="0" max="10.00" required>
+      </p>
+
+      <p>Digite sua 3° nota:
+        <input type="number" id="inNota3" step="0.10" min="0" max="10.00" required>
+      </p>
+
+      <input class="enviar" type="submit" step="0.10" min="0" max="10.00" value="Mostrar média">
+    </form>
+    <h3></h3>
+    <h4></h4>
+
+    <script src="ex5.js"></script>
+  </div>
+
+</body>
+
+</html>

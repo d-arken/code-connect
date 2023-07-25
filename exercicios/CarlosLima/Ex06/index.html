@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de clicks</title>
+</head>
+
+<body style="background-color: antiquewhite;">
+
+  <form style="display: flex; justify-content: center; margin-top: 300px;">
+    <p style="font-size: 40px;">Contador de clicks:
+      <input style="font-size: larger; color: antiquewhite; background-color: black;" type="button" id="inClick"
+        value="0" onclick="incrementCounter()">
+    </p>
+  </form>
+
+  <script>
+    let inClick = 0;
+
+    function incrementCounter() {
+      inClick++;
+      document.getElementById("inClick").value = inClick;
+    }
+
+  </script>
+
+</body>
+
+</html>

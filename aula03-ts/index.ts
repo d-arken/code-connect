@@ -28,6 +28,14 @@ const listaHumanos: Humano[] = [
   },
 ];
 
+var frase: string = "ASDASD";
+
+function getString(): number {
+  return 2;
+}
+
+console.log(getString() / getString());
+
 listaHumanos.map((h) => {
   console.log(h?.altura?.cm);
 });

@@ -14,12 +14,21 @@ const carrinho: Produto[] = [
   },
 ];
 
-carrinho.map((p) => {
-  const elCarrinho = document.getElementById("carrinho");
-  if (elCarrinho) {
-    elCarrinho.innerHTML += `<div>
-        <h1>${p.nome}</h1>
-        <h4>${p.preco}</h4>
-    </div>`;
-  }
-});
+const produtoComponent = (p: Produto) => {
+  return `<div>
+  <h1>${p.nome}</h1>
+  <h4>${p.preco}</h4>
+</div>`;
+};
+
+function render() {
+  // Renderiza produtos
+  carrinho.map((p) => {
+    const elCarrinho = document.getElementById("carrinho");
+    if (elCarrinho) {
+      elCarrinho.innerHTML += produtoComponent(p);
+    }
+  });
+}
+
+render();

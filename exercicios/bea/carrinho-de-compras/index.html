@@ -3,9 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho desastroso</title>    
+    <title>Carrinho desastroso</title>   
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-    
-</body>
+    <h1>Carrinho de compras</h1>
+    <section>
+        <table>
+            <tr>
+            <th id="itiem">Itens</th>
+            <th id="pro">Produtos</th>
+            <th>Preços</th>
+            <th>Quantidade</th>
+            <th>Subtotal</th>
+            </tr>
+
+            <tr>
+            <td><img src="https://m.media-amazon.com/images/I/91ZuZDF4RxL._AC_SL1500_.jpg">
+            <td id="b1">Edição Barbie Land, boneca de coleção Barbie Signature</td>
+            <td><R1>599,90</R1></td>      
+            <td>
+                <div class="quant item 1">                                              
+                    <input type="button" id="plus" value='-' onclick="process(-1)"/>
+                    <input id="quant" name="quant" class="text" size="1" type="text" value="1" maxlength="5" />
+                    <input type="button" id="minus" value='+' onclick="process(1)">                
+                </div>
+            </td>  
+            <td>
+                <h5><R1>R$</R1></h5>
+            </td>
+            </tr>
+
+            <tr>
+            <td><img src="https://m.media-amazon.com/images/I/91X7gpm9AEL._AC_SL1500_.jpg">
+            <td id="b2">Presidente, boneca de coleção Barbie Signature</td>
+            <td><R1>790,80</R1></td>      
+            <td>
+                <div class="quant item 2">                                              
+                    <input type="button" id="plus" value='-' onclick="process(-1)"/>
+                    <input id="quant" name="quant" class="text" size="1" type="text" value="1" maxlength="5" />
+                    <input type="button" id="minus" value='+' onclick="process(1)">                
+                </div>
+            </td>  
+            <td>
+                <h5>
+                    <R1>R$</R1>
+                </h5>
+            </td>
+            </tr>
+        </table>
+
+        <h4>Cupom de desconto</h4>
+        <input type="text" id="cupom">   
+        <button id="botaocupom">Aplicar</button>
+
+        <table id="total">
+            <tr>
+                <th>Subtotal:</th>
+                <td><R1>R$</R1></td>
+            </tr>
+            
+            <tr>
+                <th>Total:</th>
+                <td><R1>R$</R1></td>
+            </tr>                    
+        </table>
+        
+        <button onclick="alert" id="comprar">Finalizar compra</button>
+    </section>    
+    <script type="text/javascript" src="/carrinho-de-compras/carrinho.js"></script>
+</body>    
 </html>

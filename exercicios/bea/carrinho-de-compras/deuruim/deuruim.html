@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de compra teste</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Carrinho de compras</h1>
+    <section> 
+        <div class="container">
+            <div class="foto">
+                <h2></h2>
+                <h2>Produto</h2>
+                <img src="https://m.media-amazon.com/images/I/91ZuZDF4RxL._AC_SL1500_.jpg"></img> 
+                <img src="https://m.media-amazon.com/images/I/91X7gpm9AEL._AC_SL1500_.jpg"></img>
+            </div>
+
+            <div class="nome">
+                <h2>Produto</h2>
+                <h3>Barbie O Filme, Edição Barbie Land, boneca de coleção Barbie Signature</h3>
+                <h3>Barbie O Filme, Presidente, boneca de coleção Barbie Signature</h3>
+            </div>
+
+            <div class="preco">                
+                <h2>Preço</h2>                
+                    <h3><R1>599.90</R1></h3>              
+                    <h3><R1>680.00</R1></h3>                
+            </div>     
+           
+            <div class="quantidade">
+                <h2>Quantidade</h2>
+                <div data-app="product.quantity" id="quantidade">                                
+                    <input type="button" id="plus" value='-' onclick="process(-1)"/>
+                    <input id="quant" name="quant" class="text" size="1" type="text" value="1" maxlength="5" />
+                    <input type="button" id="minus" value='+' onclick="process(1)">
+                </div>
+                
+                <div data-app="product.quantity2" id="quantidade">                                      
+                    <input type="button" id="plus" value='-' onclick="process(-1)"/>
+                    <input id="quant" name="quant" class="text" size="1" type="text" value="1" maxlength="5" />
+                    <input type="button" id="minus" value='+' onclick="process(1)">
+                </div>              
+            </div>
+
+            <div class="subtotal">
+                <h2>Subtotal</h2>
+            </div>
+        </div>
+    </section>   
+    
+</body>
+</html>              

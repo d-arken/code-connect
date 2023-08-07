@@ -1,0 +1,59 @@
+img {
+ width: 100px;
+ height: 100px;
+ display: inline-block; 
+ margin-left: 25%;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;       
+}
+
+.foto {
+    width: 10%;  
+  }
+
+.nome {
+    width: 50%;    
+    }
+
+.preco {    
+    text-align: center;
+    width: 15%;    
+}
+
+.quantidade {    
+    text-align: center;
+    width: 15%;    
+}
+
+.subtotal {
+    width: 15%;
+}
+
+#quantidade {
+    padding: 8%;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    font-size: 12pt;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 50%;
+}
+
+h3 {
+    font-size: 8pt;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 80%;
+}
+
+section {
+    margin: 60px;
+    height: auto;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Shopping Cart </h1>
+    </header>
+    <main class="container-principal">
+        <div class="container-produtos">
+            <div class="categoria product">
+                <div class="menu-categoria">
+                    <p>Product</p>
+                </div>
+                    <div class="camisa">
+                        <button class="delete">X</button>
+                        <img src="imgs/camisa.webp" alt="camisa Preta">
+                        <p>Summer T-Shirt</p>
+                    </div>
+                    <div class="jaqueta">
+                        <button class="delete">X</button>
+                        <img src="imgs/jaqueta.jpg" alt="jaqueta preta">
+                        <p>Cardigan Jacket</p>
+                    </div>
+            </div>
+            <div class="categoria price">
+                <div class="menu-categoria">
+                    <p>Price</p>
+                </div>
+                <div class="preço">
+                    <p>R$177.00</p>
+                </div>
+                <div class="preço">
+                    <p>R$245.00</p>
+                </div>
+            </div>
+            <div class="categoria quantity">
+                <div class="menu-categoria">
+                    <p>Quantity</p>
+                </div>
+                <div class="input-quantity">
+                    <input type="number" value="1" id="quantidade-camisa">
+                </div>
+                <div class="input-quantity">
+                    <input type="number" value="1" id="quantidade-jaqueta">
+                </div>
+            </div>
+            <div class="categoria subTotal">
+                <div class="menu-categoria">
+                    <p>SubTotal</p>
+                </div>
+                <div class="valorTotal">
+                    <p class="subValorCamisa">R$177.00</p>
+                </div>
+                <div class="valorTotal">
+                    <p class="subValorJaqueta">R$245.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="container-pagamento">
+            <div class="container-codigoPromocional">
+                <p>Codigo de cupom</p>
+                <input type="text" placeholder="Cupom code" id="cupomCode">
+                <button id="btnCupom">APLICAR CUPOM</button>
+            </div>
+            <div class="container-finalizarPedido">
+                <div class="card-name">
+                    <p>Cart Totals</p>
+                </div>
+                <div class="subTotal">
+                    <div>
+                        <p>SubTotal</p>
+                    </div>
+                    <div>
+                        <p id="subTotal">R$281.00</p>
+                    </div>
+                </div>
+                <div class="total">
+                    <div>
+                        <p>Total</p>
+                    </div>
+                    <div>
+                        <p id="total">R$281.00</p>
+                    </div>
+                </div>
+                <div class="container-botaoFinalizarPedido">
+                    <button id="finalizarPedido">FINALIZAR PEDIDO</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="dist/main.js"></script>
+</body>
+
+</html>

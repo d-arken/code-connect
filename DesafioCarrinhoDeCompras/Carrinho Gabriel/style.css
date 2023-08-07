@@ -1,0 +1,262 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --grey-light-backgroud: rgb(216, 213, 213);
+    --grey-light: rgb(142, 139, 139);
+    --grey: rgb(85, 84, 84);
+    --backgroud-button: rgb(0, 132, 255);
+}
+
+/* Header start */
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
+
+h1 {
+    font-size: 5rem;
+    color: var(--grey);
+}
+
+/* Header end */
+
+/* Produtos start*/
+img {
+    width: 120px;
+    height: 140px;
+}
+
+.container-produtos {
+    width: 90%;
+    margin: auto;
+    border: solid 1px var(--grey-light);
+    height: 40vh;
+    display: flex;
+}
+
+.categoria {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+.product {
+    width: 55%;
+}
+
+.menu-categoria {
+    border: solid 1px var(--grey-light);
+    padding: 5px 10px;
+}
+
+.menu-categoria p {
+    font-size: 1.5rem;
+
+}
+
+.container-produtos .menu-categoria {
+    background-color: var(--grey-light-backgroud);
+    width: 100%;
+    height: 10%;
+}
+
+.price,
+.quantity,
+.subTotal {
+    width: 15%;
+}
+
+.camisa,
+.jaqueta {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    border: solid 1px var(--grey-light);
+}
+
+.product button,
+.product img,
+.product p {
+    margin-left: 25px;
+}
+
+.product button {
+    font-weight: 700;
+}
+
+.product p {
+    font-size: 1.7rem;
+}
+
+
+.product button {
+    padding: 10px;
+    border-radius: 50%;
+    border: solid 1px;
+}
+
+.camisa {
+    display: flex;
+
+}
+
+.jaqueta,
+.preço:last-child,
+.input-quantity:last-child,
+#quantidade-jaqueta,
+.valorTotal:last-child {
+    background-color: var(--grey-light-backgroud);
+}
+
+.categoria .preço,
+.categoria .input-quantity,
+.categoria .valorTotal {
+    width: 100%;
+    height: 45%;
+    border: solid 1px var(--grey-light);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 20px;
+}
+
+.preço p {
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.quantity input {
+    height: 30%;
+    width: 40%;
+    padding: 10px 10px;
+    font-size: 1.4rem;
+    border: solid 2px var(--grey-light);
+    border-radius: 5px;
+
+}
+
+.valorTotal p {
+    font-size: 2.2rem;
+}
+
+/* end produtos */
+
+/* Pagamento start*/
+.container-pagamento {
+    width: 90%;
+    height: 30vh;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.container-codigoPromocional,
+.container-finalizarPedido {
+
+    width: 50%;
+    margin-top: 3%;
+}
+
+.container-codigoPromocional {
+    border: none;
+}
+
+.container-codigoPromocional p {
+    font-size: 1.8rem;
+}
+
+.container-codigoPromocional input {
+    width: 50%;
+    height: 25%;
+    padding: 10px 10px;
+    font-size: 1.3rem;
+    border-radius: 5px;
+    /* border: 2px solid var(--grey-light); */
+}
+
+.isValid {
+    border: solid 3px rgb(17, 189, 17);
+    /* background: green; */
+}
+
+.container-codigoPromocional button {
+    border-radius: 9999px;
+    border: none;
+    height: 25%;
+    width: 30%;
+    margin: 20px;
+    font-size: 1.3rem;
+    padding: 10px 10px;
+    color: white;
+    background-color: var(--backgroud-button);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.container-finalizarPedido .card-name {
+    height: 20%;
+}
+
+.container-finalizarPedido .card-name p {
+    font-size: 1.8rem;
+}
+
+.container-finalizarPedido .subTotal {
+    display: flex;
+
+}
+
+.container-finalizarPedido .total,
+.container-finalizarPedido .subTotal {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: solid 2px var(--grey-light);
+    background-color: var(--grey-light-backgroud);
+}
+
+.container-finalizarPedido .subTotal {
+    border-bottom: 0px;
+}
+
+#subTotal {
+    color: var(--grey);
+}
+
+.container-botaoFinalizarPedido {
+    height: 30%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.container-finalizarPedido .subTotal p,
+.container-finalizarPedido .total p {
+    font-size: 1.7rem;
+    padding: 10px 15px;
+}
+
+.container-botaoFinalizarPedido button {
+    cursor: pointer;
+    border-radius: 9999px;
+    border: none;
+    height: 80%;
+    width: 30%;
+    font-size: 1.3rem;
+    padding: 10px 10px;
+    color: white;
+    background-color: var(--backgroud-button);
+    font-weight: 700;
+}
+
+/* Pagamento end */

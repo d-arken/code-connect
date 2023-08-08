@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de compras </title>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="Carrinho">
+        <div class="cabecalho-carrinho">
+            <button>
+                <i class="bx bx-chevron-left"></i>
+            </button>
+            <h3>Meu Carrinho</h3>
+        </div>
+        <ul>
+            <!-- Itens do carrinho -->
+            <li class="Carrinho-item">
+                <div class="imagem">
+                    <img src="balde de frango.png" alt="...">
+                </div>
+                <div class="info">
+                    <h4>Frango Frito</h4>
+                    <div class="detalhes">
+                        <div class="tempo">
+                            <i class="bx bxs-timer"></i>
+                            <span>30 minutos</span>
+                        </div>
+                        <div class="status">
+                            <i class="bx bxs-package"></i>
+                            <span>Pronto</span>
+                        </div>
+                    </div>
+                    <div class="precos">
+                        <p>R$ 25.50</p>
+                        <div class="contador">
+                            <i class="bx bx-minus"></i>
+                            <span class="quantidade">0</span>
+                            <i class="bx bx-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="Carrinho-item">
+                <div class="imagem">
+                    <img src="Batata.png" alt="...">
+                </div>
+                <div class="info">
+                    <h4>Batata Frita</h4>
+                    <div class="detalhes">
+                        <div class="tempo">
+                            <i class="bx bxs-timer"></i>
+                            <span>15 minutos</span>
+                        </div>
+                        <div class="status">
+                            <i class="bx bxs-package"></i>
+                            <span>Pronto</span>
+                        </div>
+                    </div>
+                    <div class="precos">
+                        <p>R$ 10.00</p>
+                        <div class="contador">
+                            <i class="bx bx-minus"></i>
+                            <span class="quantidade">0</span>
+                            <i class="bx bx-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="Carrinho-item">
+                <div class="imagem">
+                    <img src="pizza.png" alt="...">
+                </div>
+                <div class="info">
+                    <h4>Pizza</h4>
+                    <div class="detalhes">
+                        <div class="tempo">
+                            <i class="bx bxs-timer"></i>
+                            <span>35 minutos</span>
+                        </div>
+                        <div class="status">
+                            <i class="bx bxs-package"></i>
+                            <span>Pronto</span>
+                        </div>
+                    </div>
+                    <div class="precos">
+                        <p>R$ 29.99</p>
+                        <div class="contador">
+                            <i class="bx bx-minus"></i>
+                            <span class="quantidade">0</span>
+                            <i class="bx bx-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="Carrinho-item">
+                <div class="imagem">
+                    <img src="rosquinha.png" alt="...">
+                </div>
+                <div class="info">
+                    <h4>Rosquinha</h4>
+                    <div class="detalhes">
+                        <div class="tempo">
+                            <i class="bx bxs-timer"></i>
+                            <span>30 minutos</span>
+                        </div>
+                        <div class="status">
+                            <i class="bx bxs-package"></i>
+                            <span>Pronto</span>
+                        </div>
+                    </div>
+                    <div class="precos">
+                        <p>R$ 5.50</p>
+                        <div class="contador">
+                            <i class="bx bx-minus"></i>
+                            <span class="quantidade">0</span>
+                            <i class="bx bx-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <button class="pagar" id="pagarButton">Pagar <span class="valor-total">0</span></button>
+    </div>
+
+    <script>
+        const minusButtons = document.querySelectorAll('.bx-minus');
+        const plusButtons = document.querySelectorAll('.bx-plus');
+        const quantidadeSpans = document.querySelectorAll('.quantidade');
+        const valorTotalSpan = document.querySelector('.valor-total');
+        const pagarButton = document.getElementById('pagarButton');
+
+        let valorTotal = 0;
+
+        minusButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                if (quantidadeSpans[index].textContent > 0) {
+                    quantidadeSpans[index].textContent--;
+                    valorTotal -= parseFloat(quantidadeSpans[index].closest('.precos').querySelector('p').textContent.replace('R$', ''));
+                    valorTotalSpan.textContent = valorTotal.toFixed(2);
+                }
+            });
+        });
+
+        plusButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                quantidadeSpans[index].textContent++;
+                valorTotal += parseFloat(quantidadeSpans[index].closest('.precos').querySelector('p').textContent.replace('R$', ''));
+                valorTotalSpan.textContent = valorTotal.toFixed(2);
+            });
+        });
+
+        pagarButton.addEventListener('click', () => {
+            if (valorTotal > 0) {
+                alert('Pagamento realizado com sucesso!');
+                // Aqui você pode adicionar o código para finalizar a transação
+                // e possivelmente limpar o carrinho ou redirecionar o usuário.
+                resetarCarrinho();
+            } else {
+                alert('Seu carrinho está vazio. Adicione itens antes de pagar.');
+            }
+        });
+
+        function resetarCarrinho() {
+            valorTotal = 0;
+            valorTotalSpan.textContent = '0.00';
+
+            quantidadeSpans.forEach(span => {
+                span.textContent = '0';
+            });
+        }
+    </script>
+    
+</body>
+</html>

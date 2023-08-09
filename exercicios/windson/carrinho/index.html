@@ -11,8 +11,15 @@
     <header class="header">
       <h1>Shopping Cart</h1>
     </header>
+    <div class="form">
+      <form action="">
+        <label for="price">Price:</label>
+        <input class="myInput" id="inputPrice" type="text" name="price">
+        <button id="btnInserir" class="myButton" type="submit">Inserir</button>
+      </form>
+    </div>
     <section class="product">
-      <table class="tableProducts">
+      <table id="tableProducts" class="tableProducts">
         <thead>
           <tr>
             <th class="tableTitles">Product</th>
@@ -21,10 +28,10 @@
             <th class="tableTitles">SubTotal</th>
           </tr>
         </thead>
-        <tbody>
+        <!-- <tbody>
           <tr>
             <td class="images">
-              <img class="icon" src="./assets/images/add.png" alt="" />
+              <img class="icon" id="icon" src="./assets/images/add.png" alt="" />
               <img
                 class="foto"
                 src="./assets/images/mens-shirt.png"
@@ -48,7 +55,7 @@
             <td><input class="myInput" type="number"></input></td>
             <td><input class="myInput" type="number"></input></td>
           </tr>
-          </tbody>          
+          </tbody>           -->
       </table>
     </section>
     <section class="footer">
@@ -78,5 +85,6 @@
         </div>
     </section>
     </div>
+    <script src="./script.js"></script>
   </body>
 </html>

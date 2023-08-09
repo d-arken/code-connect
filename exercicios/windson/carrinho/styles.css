@@ -16,6 +16,20 @@
   color: #020a7b;
 }
 
+.form {
+  width: 100%;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.form label {
+  font-size: 20px;
+}
+
 .product {
   width: 100%;
   display: flex;

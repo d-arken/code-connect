@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div class="main">
+    <header class="header">
+      <h1>Shopping Cart</h1>
+    </header>
+    <section class="product">
+      <table class="tableProducts">
+        <thead>
+          <tr>
+            <th class="tableTitles">Product</th>
+            <th class="tableTitles">Price</th>
+            <th class="tableTitles">Quantity</th>
+            <th class="tableTitles">SubTotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="images">
+              <img class="icon" src="./assets/images/add.png" alt="" />
+              <img
+                class="foto"
+                src="./assets/images/mens-shirt.png"
+                alt=""
+              />
+            </td>
+            <td>R$177,00</td>
+            <td><input class="myInput" type="number"></input></td>
+            <td><input class="myInput" type="number"></input></td>
+          </tr>
+          <tr>
+            <td class="images">
+              <img class="icon" src="./assets/images/add.png" alt="" />
+              <img
+                class="foto"
+                src="./assets/images/mens-shirt.png"
+                alt=""
+              />
+            </td>
+            <td>R$177,00</td>
+            <td><input class="myInput" type="number"></input></td>
+            <td><input class="myInput" type="number"></input></td>
+          </tr>
+          </tbody>          
+      </table>
+    </section>
+    <section class="footer">
+        <div class="footerTitles">            
+             <h3>Codigo de cupom</h3>           
+             <h3>Cart Totals</h3>
+        </div>
+        
+        <div class="footer-cards">
+            <div class="cupom">
+                <input class="myInput" type="text" size="27" placeholder="cupom code"></input>
+                <button class="myButton">aplicar cupom</button>
+            </div>
+
+            <div class="finalizar">
+                <table class="totalizador">
+                    <thead>
+                        <tr class="tr"><th>Subtotal</th></tr>
+                        <tr class="tr"><th>total</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tr"><td>R$177,00</td></tr>
+                        <tr class="tr"><td>R$177,00</td></tr>
+                    </tbody>          
+                </table>
+            </div>      
+        </div>
+    </section>
+    </div>
+  </body>
+</html>

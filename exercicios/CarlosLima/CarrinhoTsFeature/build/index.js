@@ -53,12 +53,22 @@ function aplicarCupom() {
     if (inputCupom) {
         const codigoCupom = inputCupom.value;
         if (validaCupom(codigoCupom)) {
-            alert("Parabéns seu cupom funcionou");
+            showStyledAlert("Cupom adicionado com sucesso");
         }
         else {
-            alert("Ixii! Não funcionou");
+            showStyledAlert("Desculpe, insira um cupom válido");
         }
     }
+}
+// Função para criar um alert estilizado
+function showStyledAlert(message) {
+    const alertContainer = document.createElement("div");
+    alertContainer.className = "custom-alert";
+    alertContainer.textContent = message;
+    document.body.appendChild(alertContainer);
+    setTimeout(() => {
+        document.body.removeChild(alertContainer);
+    }, 3000);
 }
 function adicionarProduto() {
     const elNomeProduto = (document.getElementById("nome-produto"));

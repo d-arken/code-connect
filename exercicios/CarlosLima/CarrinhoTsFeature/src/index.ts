@@ -60,16 +60,30 @@ function validaCupom(cupom: string): boolean {
 }
 
 function aplicarCupom() {
-  const inputCupom = <HTMLInputElement>document.getElementById("input-cupom");
+  const inputCupom = document.getElementById("input-cupom") as HTMLInputElement;
+
   if (inputCupom) {
     const codigoCupom = inputCupom.value;
 
     if (validaCupom(codigoCupom)) {
-      alert("Parabéns seu cupom funcionou");
+      showStyledAlert("Cupom adicionado com sucesso");
     } else {
-      alert("Ixii! Não funcionou");
+      showStyledAlert("Desculpe, insira um cupom válido");
     }
   }
+}
+
+// Função para criar um alert estilizado
+function showStyledAlert(message: string) {
+  const alertContainer = document.createElement("div");
+  alertContainer.className = "custom-alert";
+  alertContainer.textContent = message;
+
+  document.body.appendChild(alertContainer);
+
+  setTimeout(() => {
+    document.body.removeChild(alertContainer);
+  }, 3000);
 }
 
 function adicionarProduto() {

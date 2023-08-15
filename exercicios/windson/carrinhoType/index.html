@@ -13,17 +13,8 @@
     </header>
     <div class="form">
       <form action="">
-        <label for="product">Product:</label>
-        <select class="myInput" id="inputProduct" name="product">
-          <option disabled selected>Selecione uma Opção...</option>
-        </select>
-
         <label for="price">Price:</label>
-        <input  class="myInput" id="inputPrice" type="text" name="price">
-
-        <label for="quantidade">Quantity:</label>
-        <input class="myInput" id="inputAmount" type="number" name="quantidade">
-
+        <input class="myInput" id="inputPrice" type="text" name="price">
         <button id="btnInserir" class="myButton" type="submit">Inserir</button>
       </form>
     </div>
@@ -31,14 +22,40 @@
       <table id="tableProducts" class="tableProducts">
         <thead>
           <tr>
-            <th class="tableTitles">Id</th>
             <th class="tableTitles">Product</th>
             <th class="tableTitles">Price</th>
             <th class="tableTitles">Quantity</th>
             <th class="tableTitles">SubTotal</th>
           </tr>
         </thead>
-
+        <!-- <tbody>
+          <tr>
+            <td class="images">
+              <img class="icon" id="icon" src="./assets/images/add.png" alt="" />
+              <img
+                class="foto"
+                src="./assets/images/mens-shirt.png"
+                alt=""
+              />
+            </td>
+            <td>R$177,00</td>
+            <td><input class="myInput" type="number"></input></td>
+            <td><input class="myInput" type="number"></input></td>
+          </tr>
+          <tr>
+            <td class="images">
+              <img class="icon" src="./assets/images/add.png" alt="" />
+              <img
+                class="foto"
+                src="./assets/images/mens-shirt.png"
+                alt=""
+              />
+            </td>
+            <td>R$177,00</td>
+            <td><input class="myInput" type="number"></input></td>
+            <td><input class="myInput" type="number"></input></td>
+          </tr>
+          </tbody>           -->
       </table>
     </section>
     <section class="footer">
@@ -54,14 +71,16 @@
             </div>
 
             <div class="finalizar">
-              <div class="footerTotais">
-                <span>Subtotal</span>
-                <span>Total</span>
-              </div>
-              <div class="footerValores">
-                <span id="subTotal"></span>
-                <span>R$177,00</span>
-              </div>
+                <table class="totalizador">
+                    <thead>
+                        <tr class="tr"><th>Subtotal</th></tr>
+                        <tr class="tr"><th>total</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tr"><td>R$177,00</td></tr>
+                        <tr class="tr"><td>R$177,00</td></tr>
+                    </tbody>          
+                </table>
             </div>      
         </div>
     </section>

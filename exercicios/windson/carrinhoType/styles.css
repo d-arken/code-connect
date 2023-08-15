@@ -18,7 +18,7 @@
 
 .form {
   width: 100%;
-  background-color: rgb(26, 11, 122);
+  background-color: red;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,7 +90,6 @@ tr:hover {
   position: absolute;
   bottom: 0;
   width: 100%;
-  box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .footerTitles {
@@ -98,7 +97,7 @@ tr:hover {
   display: flex;
   flex-direction: row;
   padding: 10px;
-  background-color: rgb(26, 11, 122, 0.9);
+  background-color: #480505;
   color: white;
 }
 
@@ -119,19 +118,6 @@ tr:hover {
   align-items: center;
   justify-content: space-around;
   padding: 2px;
-}
-
-.footerTotais,
-.footerValores {
-  display: flex;
-  width: 50vw;
-  font-size: larger;
-  font-weight: bold;
-  justify-content: space-around;
-}
-
-.row-data{
-  text-align: center;
 }
 
 .myInput {

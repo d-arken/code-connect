@@ -10,6 +10,33 @@
   background-image: linear-gradient(to top, #abbaab 0%, #ffffff 100%);
 }
 
+nav {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+ul li {
+  display: inline-block;
+}
+ul li a {
+  display: block;
+  padding: 10px 25px;
+  color: #333;
+  text-decoration: none;
+}
+ul li a:hover {
+  color: #fff;
+  background: #939393;
+  margin: 2px;
+  border-radius: 5px;
+}
+
 .header {
   text-align: center;
   padding: 10px;
@@ -130,7 +157,7 @@ tr:hover {
   justify-content: space-around;
 }
 
-.row-data{
+.row-data {
   text-align: center;
 }
 

@@ -3,31 +3,95 @@ type Produto = {
   preco: number;
   nome: string;
   imagem: string;
+  quantidade: number;
+};
+
+type Cupom = {
+  cupom: string;
+  desconto: number;
+};
+
+type Carrinho = {
+  produtos: Produto[];
+  total: number;
+  cupom: Cupom | null;
+  quantidadeProdutos: number;
+  calculaTotal(): void;
+  adcionaCupom(cupom: Cupom): void;
+  removeCupom(): void;
+  adcionarProduto(produto: Produto): void;
+  removerProduto(idx: number): void;
+  atualizarQuantidade(idx: number, quantidade: number): void;
 };
 
 // Array carrinho contendo produtos iniciais.
-const carrinho: Produto[] = [
+const produtos: Produto[] = [
   {
     nome: "Copo americano de bar",
     preco: 1.99,
     imagem: "copo.webp",
+    quantidade: 1,
   },
   {
     nome: "Mesa de bar skol amarela",
     preco: 49.9,
     imagem: "cadeira-bar.jpg",
+    quantidade: 1,
   },
   {
     nome: "Litrão de skol",
     preco: 49.9,
     imagem: "litrao-skol.jpeg",
+    quantidade: 1,
   },
   {
     nome: "Cadeira de praia",
     preco: 19.9,
     imagem: "cadeira-praia.webp",
+    quantidade: 1,
   },
 ];
+
+const carrinho: Carrinho = {
+  produtos: produtos,
+  total: 0,
+  quantidadeProdutos: 0,
+  cupom: null,
+  calculaTotal() {
+    const totalProdutos = this.produtos.reduce(
+      (acc, p) => acc + p.preco * p.quantidade,
+      0
+    );
+
+    this.total = totalProdutos;
+
+    if (this.cupom) {
+      this.total = totalProdutos - this.cupom.desconto;
+    }
+
+    render();
+  },
+  atualizarQuantidade(idx, quantidade) {
+    this.produtos[idx].quantidade = Number(quantidade);
+    this.calculaTotal();
+  },
+  adcionaCupom(cupom) {
+    this.cupom = cupom;
+    this.calculaTotal();
+  },
+  removeCupom() {
+    this.cupom = null;
+    this.calculaTotal();
+  },
+  adcionarProduto(produto) {
+    this.produtos.push(produto);
+    this.calculaTotal();
+  },
+  removerProduto(idx) {
+    this.produtos.splice(idx, 1);
+    this.calculaTotal();
+  },
+};
 
 // Função que retorna o HTML para representar um produto na interface.
 const produtoComponent = (p: Produto, index: number) => {
@@ -36,20 +100,16 @@ const produtoComponent = (p: Produto, index: number) => {
     <img class="col-opcoes img-produto" src="img/${p.imagem}" height="60px" />
     <div class="col-produto">${p.nome}</div>
     <div class="col-preco">R$ ${p.preco}</div>
-    <div class="col-quantidade"><input class="input-qtd"/></div>
+    <div class="col-quantidade">
+    <input class="input-qtd" onBlur="carrinho.atualizarQuantidade(${index}, event.target.value)" value=${p.quantidade} />
+    </div>
     <div class="col-opcoes"> 
-     <p class="remover align-opcoes" onClick="removerProduto(${index})">
+     <p class="remover align-opcoes" onClick="carrinho.removerProduto(${index})">
         <i class="fa-solid fa-circle-minus"></i>
      </p>
   </div>
 `;
 };
-
-// Função para remover um produto do carrinho com base no índice.
-function removerProduto(index: number) {
-  carrinho.splice(index, 1); // Remove o produto do array.
-  render(); // Atualiza a interface.
-}
 
 function validaCupom(cupom: string): boolean {
   const cupoms = ["-10CODE"];
@@ -69,7 +129,10 @@ function aplicarCupom(event: Event) {
     const codigoCupom = inputCupom.value;
 
     if (validaCupom(codigoCupom)) {
-      alert("Parabéns seu cupom funcionou");
+      carrinho.adcionaCupom({
+        cupom: codigoCupom,
+        desconto: 10,
+      });
     } else {
       alert("Ixii! Não funcinou");
     }
@@ -91,10 +154,11 @@ function adcionarProduto() {
     const produto: Produto = {
       nome: elNomeProduto.value,
       preco: Number(elPrecoProduto.value),
+      quantidade: 1,
+      imagem: "",
     };
 
-    carrinho.push(produto); // Adiciona o novo produto ao array.
-    render(); // Atualiza a interface.
+    carrinho.adcionarProduto(produto); // Adiciona o novo produto ao array.
   }
 }
 
@@ -106,7 +170,7 @@ function render() {
     elCarrinho.innerHTML = ""; // Limpa o conteúdo anterior.
 
     // Itera pelos produtos no carrinho e gera a representação HTML.
-    carrinho.map((p, i) => {
+    carrinho.produtos.map((p, i) => {
       elCarrinho.innerHTML += produtoComponent(p, i);
     });
   }
@@ -119,10 +183,14 @@ function render() {
 
   // Seção do total.
   // Calcula o total dos preços dos produtos no carrinho.
-  const total = carrinho.reduce((acc, p) => acc + p.preco, 0);
   const elTotal = document.getElementById("total");
   if (elTotal) {
-    elTotal.innerHTML = `R$ ${total.toFixed(2)}`; // Atualiza o elemento de exibição do total.
+    elTotal.innerHTML = `R$ ${carrinho.total.toFixed(2)}`; // Atualiza o elemento de exibição do total.
+  }
+
+  const elDesconto = document.getElementById("desconto");
+  if (elDesconto && carrinho.cupom) {
+    elDesconto.innerHTML = `R$ ${carrinho.cupom.desconto.toFixed(2)}`;
   }
 
   const btnAplicar = document.querySelector("#btn-aplicar");
@@ -131,4 +199,4 @@ function render() {
   }
 }
 
-render(); // Chama a função de renderização para exibir os produtos iniciais.
+carrinho.calculaTotal();

@@ -1,0 +1,216 @@
+// Definição do tipo de objeto Produto, contendo propriedades de preço e nome.
+// @ts-ignore
+import { faker } from "https://cdn.skypack.dev/@faker-js/faker";
+
+type Produto = {
+  preco: number;
+  nome: string;
+  imagem: string;
+  quantidade: number;
+};
+
+type Cupom = {
+  cupom: string;
+  desconto: number;
+};
+
+type Carrinho = {
+  produtos: Produto[];
+  total: number;
+  cupom: Cupom | null;
+  quantidadeProdutos: number;
+  calculaTotal(): void;
+  adcionaCupom(cupom: Cupom): void;
+  removeCupom(): void;
+  adcionarProduto(produto: Produto): void;
+  removerProduto(idx: number): void;
+  adcionarProdutos(produtos: Produto[]): void;
+  atualizarQuantidade(idx: number, quantidade: number): void;
+};
+
+function gerarProdutos(quantidade: number): Produto[] {
+  const produtos: Produto[] = [];
+
+  for (let i = 0; i < quantidade; i++) {
+    produtos.push({
+      nome: faker.commerce.product(),
+      preco: faker.commerce.price(),
+      quantidade: faker.number.int(3),
+      imagem: faker.image.url(),
+    });
+  }
+
+  return produtos;
+}
+var produtos: Produto[] = [];
+
+function buscarProdutos() {
+  const req = fetch("https://64dd596be64a8525a0f7d4dc.mockapi.io/produtos", {
+    method: "GET",
+  });
+
+  req.then((res) => {
+    if (res.status === 200) {
+      res.json().then((data) => {
+        carrinho.adcionarProdutos(data);
+      });
+    } else {
+      alert("Request deu erro");
+    }
+  });
+}
+
+buscarProdutos();
+
+const carrinho: Carrinho = {
+  produtos: produtos,
+  total: 0,
+  quantidadeProdutos: 0,
+  cupom: null,
+  calculaTotal() {
+    const totalProdutos = this.produtos.reduce(
+      (acc, p) => acc + p.preco * p.quantidade,
+      0
+    );
+
+    this.total = totalProdutos;
+
+    if (this.cupom) {
+      this.total = totalProdutos - this.cupom.desconto;
+    }
+
+    render();
+  },
+  atualizarQuantidade(idx, quantidade) {
+    this.produtos[idx].quantidade = Number(quantidade);
+    this.calculaTotal();
+  },
+  adcionaCupom(cupom) {
+    this.cupom = cupom;
+    this.calculaTotal();
+  },
+  removeCupom() {
+    this.cupom = null;
+    this.calculaTotal();
+  },
+  adcionarProduto(produto) {
+    this.produtos.push(produto);
+    this.calculaTotal();
+  },
+  adcionarProdutos(produtos) {
+    this.produtos = produtos;
+    this.calculaTotal();
+  },
+  removerProduto(idx) {
+    this.produtos.splice(idx, 1);
+    this.calculaTotal();
+  },
+};
+
+// Função que retorna o HTML para representar um produto na interface.
+const produtoComponent = (p: Produto, index: number) => {
+  return `
+  <div class="row-carrinho padding-produto">
+    <img class="col-opcoes img-produto" src="${p.imagem}" height="60px" />
+    <div class="col-produto">${p.nome}</div>
+    <div class="col-preco">R$ ${p.preco}</div>
+    <div class="col-quantidade">
+    <input class="input-qtd" onBlur="carrinho.atualizarQuantidade(${index}, event.target.value)" value=${p.quantidade} />
+    </div>
+    <div class="col-opcoes"> 
+     <p class="remover align-opcoes" onClick="carrinho.removerProduto(${index})">
+        <i class="fa-solid fa-circle-minus"></i>
+     </p>
+  </div>
+`;
+};
+
+function validaCupom(cupom: string): boolean {
+  const cupoms = ["-10CODE"];
+
+  for (let i = 0; i < cupoms.length; i++) {
+    if (cupoms[i] == cupom) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function aplicarCupom(event: Event) {
+  const inputCupom = <HTMLInputElement>document.getElementById("input-cupom");
+  if (inputCupom) {
+    const codigoCupom = inputCupom.value;
+
+    if (validaCupom(codigoCupom)) {
+      carrinho.adcionaCupom({
+        cupom: codigoCupom,
+        desconto: 10,
+      });
+    } else {
+      alert("Ixii! Não funcinou");
+    }
+  }
+}
+
+// Função para adicionar um novo produto ao carrinho.
+function adcionarProduto() {
+  // Obtém elementos do HTML para o nome e preço do novo produto.
+  const elNomeProduto = <HTMLInputElement>(
+    document.getElementById("nome-produto")
+  );
+  const elPrecoProduto = <HTMLInputElement>(
+    document.getElementById("preco-produto")
+  );
+
+  if (elNomeProduto && elPrecoProduto) {
+    // Cria um novo objeto Produto com os valores inseridos.
+    const produto: Produto = {
+      nome: elNomeProduto.value,
+      preco: Number(elPrecoProduto.value),
+      quantidade: 1,
+      imagem: "",
+    };
+
+    carrinho.adcionarProduto(produto); // Adiciona o novo produto ao array.
+  }
+}
+
+// Função para renderizar os produtos, adicionar listener de evento e mostrar o total.
+function render() {
+  // Seção de renderização dos produtos.
+  const elCarrinho = document.getElementById("produtos");
+  if (elCarrinho) {
+    elCarrinho.innerHTML = ""; // Limpa o conteúdo anterior.
+
+    // Itera pelos produtos no carrinho e gera a representação HTML.
+    carrinho.produtos.map((p, i) => {
+      elCarrinho.innerHTML += produtoComponent(p, i);
+    });
+  }
+
+  // Seção de adicionar produtos.
+  const btnAdcionar = document.getElementById("btn-adcionar");
+  if (btnAdcionar) {
+    btnAdcionar.addEventListener("click", adcionarProduto); // Adiciona listener para adicionarProduto.
+  }
+
+  // Seção do total.
+  // Calcula o total dos preços dos produtos no carrinho.
+  const elTotal = document.getElementById("total");
+  if (elTotal) {
+    elTotal.innerHTML = `R$ ${carrinho.total.toFixed(2)}`; // Atualiza o elemento de exibição do total.
+  }
+
+  const elDesconto = document.getElementById("desconto");
+  if (elDesconto && carrinho.cupom) {
+    elDesconto.innerHTML = `R$ ${carrinho.cupom.desconto.toFixed(2)}`;
+  }
+
+  const btnAplicar = document.querySelector("#btn-aplicar");
+  if (btnAplicar) {
+    btnAplicar.addEventListener("click", aplicarCupom);
+  }
+}
+
+carrinho.calculaTotal();

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./tilt.js" /></script>
+
+ 
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="carrinho-container">
+      <!-- <div class="adcionar-produtos">
+        <label for="nome">Nome do produto</label>
+        <input type="text" name="nome" id="nome-produto" />
+
+        <label for="preco">Nome do preço</label>
+        <input type="text" name="preco" id="preco-produto" />
+
+        <button id="btn-adcionar">Adcionar item</button>
+      </div> -->
+
+      <div class="carrinho">
+        <div class="row-carrinho header">
+          <div class="col-opcoes">#</div>
+          <div class="col-produto">Produto</div>
+          <div class="col-preco">Preço</div>
+          <div class="col-quantidade">Quantidade</div>
+          <div class="col-opcoes">Opções</div>
+        </div>
+        <div class="produtos-container" id="produtos">
+          <img class="produtos-loader" src="img/wind-toy.svg" height="60" />
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="cupom">
+          <label for="input-cupom">Cupom de promoção</label>
+          <input id="input-cupom" />
+          <button id="btn-aplicar"> Aplicar cupom</button>
+        </div>
+        <div>
+          <div id="desconto" class="desconto"></div>
+          <div id="total"></div>
+          <button id="btn-aplicar"> Finalizar compra</button>
+
+        </div>
+      </div>
+    </div>
+
+    <script  type="module" src="./index.js"></script>
+    <script>
+      VanillaTilt.init(document.querySelectorAll(".img-produto"),{
+          max: 25,
+          glare: true,
+          "max-glare": 10,
+      });
+    </script>
+  </body>
+</html>

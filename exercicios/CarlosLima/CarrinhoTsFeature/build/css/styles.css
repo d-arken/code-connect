@@ -92,17 +92,6 @@ body {
   border-radius: 4px;
 }
 
-.carrinho button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.carrinho button:hover {
-  background-color: #0056b3;
-}
-
 .row-carrinho {
   display: flex;
   align-items: center;

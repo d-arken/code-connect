@@ -101,7 +101,7 @@ function adicionarProduto() {
     const produto: Produto = {
       nome: elNomeProduto.value,
       preco: Number(elPrecoProduto.value),
-      imagem: elImagemProduto.value, // Define a imagem do novo produto.
+      imagem: elImagemProduto.value,
     };
 
     carrinho.push(produto);

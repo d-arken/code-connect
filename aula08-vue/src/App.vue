@@ -2,25 +2,28 @@
   <div class="quiz">
     <img src="quiz.jpg" />
     <h3 class="pergunta">{{ quiz[quizAtual].pergunta }}</h3>
+    <h4 class="pergunta">{{ alternativa }}</h4>
     <div class="reposta-container">
-      <p
-        class="resposta"
-        @click="confere(value)"
-        v-for="(value, key) in quiz[quizAtual].alternativas"
-        :key="key"
-      >
-        {{ key }}
-      </p>
+      <AlternativaQuiz
+        @click="confere(resposta)"
+        v-for="(resposta, alternativa) in quiz[quizAtual].alternativas"
+        :key="alternativa"
+        :alternativa="alternativa"
+        @informaPai="(alternativa) => (this.alternativa = alternativa)"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import AlternativaQuiz from "./components/AlternativaQuiz.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: { AlternativaQuiz },
   data() {
     return {
+      alternativa: "",
       quizAtual: 0,
       quiz: [
         {
@@ -73,12 +76,15 @@ export default {
         alert("Errow");
       }
     },
+    alert(v) {
+      alert(v);
+    },
   },
   computed: {},
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

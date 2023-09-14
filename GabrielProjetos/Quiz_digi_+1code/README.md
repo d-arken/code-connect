@@ -1,8 +1,8 @@
-Foi criado um site similar ao da DIGI e da +1code.
+#### Foi criado um site similar ao da DIGI e da +1code.
 
-cada site tem um mini game chamado QUIZ, com perguntas relacionada a empresa.
+#### Cada site tem um mini game chamado QUIZ, com perguntas relacionada a empresa.
 
-Fiz um video em ao Linkedin demonstrativo:
-https://www.linkedin.com/feed/update/urn:li:activity:7103478738868199425/
+#### Fiz um video em ao Linkedin demonstrativo:
+#### https://www.linkedin.com/feed/update/urn:li:activity:7103478738868199425/
 
-<img src="/assets/img/imgDemonstrativa.png">
+![image](https://github.com/d-arken/code-connect/blob/main/GabrielProjetos/Quiz_digi_%2B1code/assets/img/imgDemonstrativa.png)

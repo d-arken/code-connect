@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter&family=Lato&family=Poppins:wght@400;500;700&family=Roboto&family=Trade+Winds&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/quiz/assets/css/+1code.css">
+    <script src="/quiz/assets/js/vue.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="/quiz/assets/img/logo+1code.png" alt="">
+            </div>
+            <div class="conteudo">
+                <section>
+                    <div>
+                        <s class="titulo">
+                            < HELLO WORLD </s><br>
+                                <p class="subTitulo">SALVE QUEBRADA/></p>
+                    </div>
+                    <p class="frase">Reprogramando a Quebrada !</p>
+                </section>
+                <img src="/quiz/assets/img/+1codeimg.png" alt="">
+                </siv>
+            </div>
+    </header>
+    <main>
+        <div class="game" id="app">
+            <div class="saidaPergunta">
+                <p>{{pergunta}}</p>
+            </div>
+            <button v-for="opcaoAtual in opcoesDeRespostas"
+                @click="verificarResposta(opcaoAtual)"
+                :class="{'resposta-correta': opcaoCorreta === opcaoClicadaGlobal && opcaoAtual === opcaoCorreta,
+                'resposta-errada': opcaoClicadaGlobal === opcaoAtual}">{{opcaoAtual}}</button>
+                <p class="creditos" v-show="!sairBotaoInicar">Criado by Gabriel Miller</p>
+            <button @click="chamarAPI" v-show="sairBotaoInicar">Começar game</button>
+        </div>
+    </main>
+
+    <script>
+        const vue = new Vue({
+            el: "#app",
+            data: {
+                arrayPerguntas: [],
+                pergunta: "",
+                opcoesDeRespostas: [],
+                opcaoCorreta: "",
+                opcaoClicadaGlobal: null,
+                sairBotaoInicar: true
+            },
+            methods: {
+                carregarPergunta() {
+                    if (this.arrayPerguntas.length > 0) {
+                        const perguntaAtual = this.arrayPerguntas.shift()
+                        this.pergunta = perguntaAtual.pergunta;
+                        this.opcoesDeRespostas = perguntaAtual.opcoes;
+                        this.opcaoCorreta = perguntaAtual.resposta_correta;
+                    }
+                },
+                async chamarAPI() {
+                    const response = await fetch("http://localhost:3000/perguntas-1code");
+                    const data = await response.json()
+                    this.arrayPerguntas = data
+                    this.sairBotaoInicar = false
+                    this.carregarPergunta()
+                },
+                verificarResposta(opcaoAtual) {
+                    this.opcaoClicadaGlobal = opcaoAtual
+                    if (opcaoAtual === this.opcaoCorreta) {
+                        setTimeout(() => {
+                            this.carregarPergunta()
+                        },650)
+                    } else {
+                        console.log('errou');
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

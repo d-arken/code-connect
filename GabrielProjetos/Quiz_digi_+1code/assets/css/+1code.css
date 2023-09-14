@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+header {
+    padding-top: 15px;
+    background: #6533E2;
+    width: 100%;
+    height: 900px;
+    display: flex;
+    justify-content: center;
+}
+header div {
+    min-width: 1200px;
+}
+
+
+header .logo {
+    width: 100%;
+    height: 100px;
+}
+header .conteudo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.conteudo section {
+    width: 457px;
+    padding-top: 50px;
+}
+
+.conteudo section .titulo, .conteudo .subTitulo {
+    font-size: 69px;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.conteudo section .titulo {
+    color: rgb(253, 123, 1);
+    line-height: 60px;
+}
+.conteudo section .frase {
+    font-family: 'Inter', sans-serif;
+    font-size: 23px;
+    color: white;
+}
+
+.conteudo .subTitulo {
+    color: rgb(110, 193, 228);
+}
+
+header .logo img {
+    width: 168px;
+    height: 61px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+
+
+main {
+    position: relative;
+    width: 1200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.game {
+    border-radius: 60px;
+    background: #FD7B01;
+    width: 580px;
+    height: 450px;
+    position: absolute;
+    bottom: 90px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    left: 0;
+}
+
+.saidaPergunta {
+    background: #6EC1E4;
+    width: 75%;
+    height: 100px;
+    border-radius: 40px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    text-align: center;
+}
+
+.game button {
+    width: 90%;
+    height: 45px;
+    border-radius: 40px;
+    margin-top: 10px;
+    font-size: 15px;
+    background: #D9D9D9;
+}
+.game button:hover {
+    background: rgba(217, 217, 217, 0.61);
+    font-size: 16px;
+}
+.creditos {
+    margin: 20px;
+    color: white;
+}
+
+.resposta-errada {
+    border: 2px solid red;
+}
+
+.resposta-correta {
+    border: 3px rgb(40, 223, 40) solid;
+    background-color: rgb(40, 223, 40);
+}

@@ -1,0 +1,96 @@
+{
+  "perguntas-digi": [
+    {
+      "pergunta": "Qual é a principal especialização da empresa Digi?",
+      "opcoes": [
+        "Desenvolvimento de software",
+        "Marketing digital",
+        "Fabricação de produtos eletrônicos",
+        "Engenharia civil"
+      ],
+      "resposta_correta": "Marketing digital"
+    },
+    {
+      "pergunta": "O que a Digi oferece para ajudar as empresas a se envolverem com seus clientes?",
+      "opcoes": [
+        "Programas de treinamento",
+        "Programas de saúde e bem-estar",
+        "Marketing de engajamento e fidelização",
+        "Serviços de consultoria financeira"
+      ],
+      "resposta_correta": "Marketing de engajamento e fidelização"
+    },
+    {
+      "pergunta": "Que tipo de estratégias a Digi desenvolve para incentivar a fidelidade do cliente?",
+      "opcoes": [
+        "Descontos em produtos concorrentes",
+        "Programas de recompensas e descontos",
+        "Aumento constante de preços",
+        "Campanhas publicitárias esporádicas"
+      ],
+      "resposta_correta": "Programas de recompensas e descontos"
+    },
+    {
+      "pergunta": "Como o marketing de engajamento pode beneficiar as empresas?",
+      "opcoes": [
+        "Aumentando a rotatividade de funcionários",
+        "Reduzindo os custos de produção",
+        "Incentivando os clientes a compartilharem a marca",
+        "Limitando a interação com os clientes"
+      ],
+      "resposta_correta": "Incentivando os clientes a compartilharem a marca"
+    }
+  ],
+  "perguntas-1code": [
+    {
+      "pergunta": "Qual é a missão da empresa +1code?",
+      "opcoes": [
+        "Fornecer serviços de reparo de dispositivos eletrônicos.",
+        "Oferecer aulas de culinária para jovens talentosos.",
+        "Organizar eventos esportivos em comunidades carentes.",
+        "Reprogramar a quebrada através do ensino tech de qualidade para jovens de baixa renda."
+      ],
+      "resposta_correta": "Reprogramar a quebrada através do ensino tech de qualidade para jovens de baixa renda."
+    },
+    {
+      "pergunta": "O que a empresa +1code busca alcançar com sua missão?",
+      "opcoes": [
+        "Fornecer entretenimento para jovens.",
+        "Capacitar jovens de baixa renda com habilidades tecnológicas valiosas.",
+        "Desenvolver produtos de beleza artesanais.",
+        "Promover viagens turísticas para destinos exóticos."
+      ],
+      "resposta_correta": "Capacitar jovens de baixa renda com habilidades tecnológicas valiosas."
+    },
+    {
+      "pergunta": "Quais são os principais beneficiários dos programas da +1code?",
+      "opcoes": [
+        "Pessoas idosas.",
+        "Profissionais já estabelecidos na indústria de tecnologia.",
+        "Jovens de baixa renda.",
+        "Estudantes de faculdades renomadas."
+      ],
+      "resposta_correta": "Jovens de baixa renda."
+    },
+    {
+      "pergunta": "Como a +1code planeja alcançar sua missão?",
+      "opcoes": [
+        "Fornecendo aulas de dança e música.",
+        "Distribuindo roupas para comunidades carentes.",
+        "Oferecendo ensino de tecnologia de alta qualidade para jovens de baixa renda.",
+        "Organizando festas temáticas."
+      ],
+      "resposta_correta": "Oferecendo ensino de tecnologia de alta qualidade para jovens de baixa renda."
+    },
+    {
+      "pergunta": "Qual é o impacto esperado da +1code em suas comunidades-alvo?",
+      "opcoes": [
+        "Redução da oferta de empregos.",
+        "Capacitação de jovens para oportunidades tecnológicas e de emprego.",
+        "Aumento da desigualdade social.",
+        "Promoção de conflitos na comunidade."
+      ],
+      "resposta_correta": "Capacitação de jovens para oportunidades tecnológicas e de emprego."
+    }
+  ]
+}

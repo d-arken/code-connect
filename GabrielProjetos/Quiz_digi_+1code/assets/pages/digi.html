@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Quiz App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;500;700&family=Roboto&family=Trade+Winds&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/quiz/assets/css/digi.css">
+    <script src="/quiz/assets/js/vue.js"></script>
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <img v-show="!active" @mouseenter="mouseEnter" src="/quiz/assets/img/LogoDigi.svg" alt="Logo da digi">
+            <a href="/quiz/assets/pages/+1code.html"><img v-show="active" @mouseleave="mouseLeave" src="/quiz/assets/img/logo+1code.png" alt="Logo da digi"></a>
+        </div>
+    </header>
+    <main>
+        <div class="containerPricipal">
+            <div class="game">
+                <div class="titulo">
+                    <h1>Desafio você a completar esse QUIZ, você topa?</h1>
+                </div>
+                <div class="app" id="app">
+                    <div class="container">
+                        <div class="saidaPergunta">
+                            <p>{{ pergunta }}</p>
+                        </div>
+                        <button v-for="option in options" 
+                                @click="verificarResposta(option)" 
+                                :class="{ 'resposta-correta': respostaCorreta === opcaoClicadaGlobal && option === respostaCorreta,
+                                          'resposta-errada': opcaoClicadaGlobal === option }">{{ option }}</button>
+                        <p class="creditos" v-show="!sairBotaoInicar">Criado by Gabriel Miller</p>
+                        <button @click="chamarAPI" v-show="sairBotaoInicar">Começar game</button>
+                    </div>
+                </div>
+            </div>
+            <div class="containerImagemPessoa">
+                <img src="/quiz/assets/img/Pessoa.png" alt="">
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const vue = new Vue({
+            el: "#app",
+            data: {
+                arrayPerguntas: [],
+                pergunta: "",
+                options: [],
+                respostaCorreta: "",
+                opcaoClicadaGlobal: null,
+                sairBotaoInicar: true
+            },
+            methods: {
+                carregarPergunta() {
+                    if(this.arrayPerguntas.length > 0){
+                        const perguntaAtual = this.arrayPerguntas.shift();
+                        this.pergunta = perguntaAtual.pergunta;
+                        this.options = perguntaAtual.opcoes;
+                        this.respostaCorreta = perguntaAtual.resposta_correta;
+                    } 
+                },
+                async chamarAPI() {
+                    const response = await fetch("http://localhost:3000/perguntas-digi");
+                    const data = await response.json();
+                    this.arrayPerguntas = data
+                    console.log(this.arrayPerguntas)
+                    this.sairBotaoInicar = false
+                    this.carregarPergunta()
+                },
+                verificarResposta(opcaoClicada) {
+                    this.opcaoClicadaGlobal = opcaoClicada
+                    if (opcaoClicada === this.respostaCorreta) {
+                        setTimeout(() => {
+                            this.carregarPergunta()
+                        }, 650)
+                    } else {
+                        this.respostaErrada = true
+                    }
+                },
+            },
+        });
+
+        const vue2 = new Vue({
+            el: "#logo",
+            data: {
+                active: false
+            },
+            methods: {
+                mouseEnter() {
+                    this.active = true
+                },
+                mouseLeave() {
+                    this.active = false
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

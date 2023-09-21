@@ -1,7 +1,10 @@
 <template>
   <header class="header">
     <h3>Central de jogos +1code</h3>
-    <router-link to="/jogo/quiz">Quiz</router-link>
+    <router-link class="link" to="/jogo/quiz">Quiz</router-link>
+    <router-link class="link" to="/jogo/jogo-da-velha"
+      >Jogo da velha</router-link
+    >
   </header>
   <section>
     <router-view />
@@ -38,5 +41,10 @@ export default {
   color: rgb(255, 192, 32);
   text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
     -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.link {
+  margin: 0 12px;
+  color: rgb(255, 192, 32);
 }
 </style>

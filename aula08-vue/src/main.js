@@ -2,12 +2,15 @@ import { createApp } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 import App from "./App.vue";
 import JogoQuiz from "./components/JogoQuiz.vue";
-import Oi from "./components/Oi.vue";
+import JogoDaVelha from "./components/JogoDaVelha.vue";
 
 const routes = [
-  { path: "/", name: "index", component: App },
   { path: "/jogo/quiz", name: "quiz", component: JogoQuiz },
-  { path: "/oi", name: "oi", component: Oi },
+  {
+    path: "/jogo/jogo-da-velha",
+    name: "jogo-da-velha",
+    component: JogoDaVelha,
+  },
 ];
 
 const router = createRouter({

@@ -40,45 +40,42 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100vh; /* Ajusta a altura para preencher a tela verticalmente */
-  justify-content: center; /* Centraliza vertical e horizontalmente */
+  height: 100vh; 
+  justify-content: center; 
 }
 
 .titulo {
   font-size: 36px;
   text-align: center;
-  margin-bottom: 20px; /* Espaço inferior para separar o título da entrada */
+  margin-bottom: 20px; 
 }
 
 .resposta {
   font-size: 24px;
-  padding: 12px; /* Reduz o preenchimento para um visual mais limpo */
+  padding: 12px; 
   text-align: center;
-  width: 100%; /* Ocupa toda a largura do container */
-  border: 2px solid #333; /* Adiciona uma borda para destacar a entrada */
-  border-radius: 5px; /* Cantos arredondados */
-}
+  width: 100%; 
+  border: 2px solid #333; 
+  border-radius: 5px; 
 
 .tentar {
-  margin-top: 20px; /* Espaço superior entre o input e o botão */
-  padding: 12px 24px; /* Mais preenchimento para o botão */
-  font-size: 18px; /* Texto do botão maior */
-  background-color: #007BFF; /* Cor de fundo azul */
-  color: white; /* Texto branco */
-  border: none; /* Remove a borda */
-  cursor: pointer; /* Altera o cursor ao passar o mouse */
-  transition: background-color 0.3s; /* Efeito de transição suave ao passar o mouse */
-  border-radius: 5px; /* Cantos arredondados */
-}
+  margin-top: 20px; 
+  padding: 12px 24px; 
+  font-size: 18px; 
+  background-color: #007BFF; 
+  color: white; 
+  border: none; 
+  transition: background-color 0.3s; 
+  border-radius: 5px; 
 
 .tentar:hover {
-  background-color: #0056b3; /* Cor de fundo mais escura ao passar o mouse */
+  background-color: #0056b3; 
 }
 
 .resultado {
-  margin-top: 20px; /* Espaço superior para separar o resultado */
+  margin-top: 20px; 
   text-transform: uppercase;
-  font-weight: bold; /* Texto em negrito para o resultado */
+  font-weight: bold; 
 }
 
 .verde {

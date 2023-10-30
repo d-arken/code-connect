@@ -5,7 +5,6 @@ export default{
     data(){
         return{
            email: '',
-           password: '',
            color: 'blue',
            msgErro: '',
         }
@@ -13,19 +12,13 @@ export default{
     props:{
         placeholder: String,
         type: String,
-        value: String,      
     },
     methods:{
         onchange(event){
             if(event.target.type === 'email'){
                 this.email = event.target.value
                 this.validateEmail(this.email)
-            }
-            if(event.target.type === 'password'){
-                this.password = event.target.value
-                this.validatePassword(this.password)
-            }
-            
+            }            
         },
         validateEmail(email) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+/;
@@ -37,17 +30,7 @@ export default{
                 this.color = 'blue';
                 console.log('blue')
             }
-        },
-        validatePassword(password){
-            console.log(password)
-            const digito = /^(?=.*\d)$/
-            console.log(digito)
-            if(digito.test('a')){
-                console.log('passou')
-            }else{
-                console.log('ainda não')
-            }
-        }
+        },        
     },
 }       
 </script>
@@ -90,5 +73,5 @@ export default{
     display: flex;
     align-items: center;
     color: red;
-       }
+       } 
 </style>

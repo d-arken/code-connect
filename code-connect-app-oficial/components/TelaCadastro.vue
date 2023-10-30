@@ -3,9 +3,9 @@
     <div class=card>
     </div>
     <div class="main">
-    <InputDefault placeholder="E-mail" type="email"/>
-    <InputDefault placeholder="E-mail" type="email"/>
-    <InputDefault placeholder="Password" type="password"/>
+    <InputDefault v-model="email" placeholder="E-mail" type="email" onchange="event" />
+    <InputDefault v-model="reemail" placeholder="E-mail" type="email"/>
+    <InputDefault v-model="password" placeholder="Password" type="password"/>
     <ButtonDefault />
   </div>
     

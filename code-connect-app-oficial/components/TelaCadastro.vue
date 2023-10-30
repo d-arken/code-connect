@@ -2,25 +2,27 @@
   <div class="container">
     <div class=card>
     </div>
-    <div class="main">
-    <InputDefault v-model="email" placeholder="E-mail" type="email" onchange="event" />
-    <InputDefault v-model="reemail" placeholder="E-mail" type="email"/>
-    <InputDefault v-model="password" placeholder="Password" type="password"/>
-    <ButtonDefault />
-  </div>
+    <form class="main">
+    <InputDefault placeholder="E-mail" type="email" />
+    <InputDefault placeholder="E-mail" type="email"/>
+    <InputPassword placeholder="Password" type="password"/>
+    <ButtonDefault  />
+    </form>
     
   </div>  
 </template>
 <script>
   import InputDefault from './input/InputDefault.vue';
   import ButtonDefault from './button/ButtonDefault.vue';
+import InputPassword from './input/InputPassword.vue';
 
   export default {  
     name: "TelaCadastro",
     components:{
-      InputDefault,
-      ButtonDefault
-    }
+    InputDefault,
+    ButtonDefault,
+    InputPassword
+}
   };
 </script>
 <style>

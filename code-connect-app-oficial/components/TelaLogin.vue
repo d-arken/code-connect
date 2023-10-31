@@ -1,174 +1,93 @@
 <template>
   <div>
-    <header class="cabecalho">
-      <h1 class="cabecalho__titulo">code.connect</h1>
-      <p class="cabecalho__welcome">WELCOME</p>
-    </header>
-    <main class="container">
-      <form class="formulario" @submit.prevent="login">
-          <input
-            class="input"
-            type="email"
-            id="email"
-            @blur="validarEmail"
-            v-model="email"
-            placeholder="Email"
-            required
-          />
-        <span class="error-message" v-if="emailError"> {{ emailError }}</span>
-          <input
-            class="input"
-            type="password"
-            id="password"
-            v-model="password"
-            placeholder="Senha"
-            required
-          />
-        <div class="recuperarSenha">
-          <a class="recuperarSenha__link">forgot passaword</a>
-        </div>
-        <button class="formulario__botao" type="submit">LOG IN</button>
-        <p>or log in by</p>
-        <div>
-          <img class="icon" src="" alt="">
-          <img class="icon" alt="">
-        </div>
-        <p class="criarConta">Don't have account? <a class="criarConta__link">sig up</a></p>
-      </form>
-    </main>
+    <div class="logo">
+    </div> 
+    <form class="formulario">
+      <inputEmail @email-valido="handleEmailValid"></inputEmail>
+      <inputPassword @password-valido="handlePasswordValid"></inputPassword>
+      <p class="senhaEsquecida">Forgot Password</p>
+      <botaoSubmit @enviar="login"></botaoSubmit>
+    </form>
+    <section class="cadastro">
+      <p class="cadastro_texto">Don't have account? <router-link to="/cadastro" class="cadastro_link">Sign UP</router-link></p>
+    </section>
   </div>
 </template>
+
 <script>
+import inputEmail from "./form/inputEmail.vue";
+import inputPassword from "./form/inputPassword.vue";
+import botaoSubmit from "./form/botaoSubmit.vue";
+import "/assets/reset.css"
+import "/assets/global.css"
+
+
 export default {
   name: "TelaLogin",
+  components: {
+    inputEmail,
+    inputPassword,
+    botaoSubmit,
+  },
   data() {
     return {
-      email: "",
-      password: "",
-      emailError: null,
+      emailValid: "",
+      passwordValid: "",
     };
   },
   methods: {
-    validarEmail() {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+/;
-
-      if (!emailRegex.test(this.email)) {
-        this.emailError = "Formato de email inválido";
-      } else {
-        this.emailError = null;
-      }
+    handleEmailValid(email) {
+      this.emailValid = email;
+    },
+    handlePasswordValid(senha) {
+      this.passwordValid = senha;
     },
     async login() {
-      if (this.emailError) {
-        return;
-      }
-      try {
+      if (this.emailValid && this.passwordValid) {
         const response = await fetch(
           "https://run.mocky.io/v3/25eb88e7-53e6-40cf-926f-214c6bfa83e1"
         );
         if (response.ok) {
-          alert("entrou");
+          alert("certo")
+          this.$router.push("/");
         }
-      } catch (error) {
-        console.log(error);
       }
     },
-  },
-};
+  }
+}
 </script>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-:root {
-  --white: #fff;
-  --purple: #5252c7;
-  --gray-light: #606060;
-  --bg-input: #f3f5f7;
-  --bg-button: linear-gradient(271deg, #888bf4 0%, #5151c6 100%);
-  --bg-icon: #5151c6;
-  --color-placehold: #bdbdbd;
-}
 
-.error-message {
-  color: red;
-}
-
-.cabecalho {
-  height: 312px;
-  width: 100%;
-  text-align: center;
-  background: rgb(85, 85, 223);
-}
-.cabecalho__titulo {
-  padding-top: 64px;
-  padding-bottom: 38px;
-  font-size: 32px;
-  color: var(--white);
-}
-.cabecalho__welcome {
-  font-family: Proxima Nova;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 4px;
-  color: var(--white);
-}
-
-.formulario {
-  width: 70%;
-  margin: 3rem auto;
-  /* cima e embaixo 3em, auto nos lados */
-  max-width: 600px;
-}
-.input {
-  width: 100%;
-  padding: 1rem;
-  border: none;
-  border-radius: 30px;
-  background: var(--bg-input);
-  margin-bottom: 20px;
-  font-size: 1rem;
-}
-.input::placeholder {
-  color: var(--color-placehold);
-}
-.input:focus {
-  border: red;
-}
-.recuperarSenha {
-  text-align-last: center;
-  margin-top: 20px;
-  margin-bottom: 40px;
-}
-.recuperarSenha__link {
-  color: var(--purple);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 400;
-}
-.formulario__botao {
-  width: 100%;
-  padding: 1.2rem;
-  background: var(--bg-button);
-  color: var(--white);
-  border: none;
-  border-radius: 30px;
-  letter-spacing: 0.6px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.criarConta {
-  text-align: center;
-  color: var(--gray-light);
-  font-size: 16px;
-}
-.criarConta__link {
-  text-transform: uppercase;
-  color: var(--purple);
-}
+<style scoped>
+  .logo {
+    height: 375px;
+    background: url(../assets/img/logo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
+  }
+  .formulario {
+    background: var(--white);
+    border-radius: 28px 28px 0px 0px;
+    padding-top: 20px;
+    padding-left:30px;
+    padding-right:30px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: -35px;
+    z-index: 1;
+  }
+  .senhaEsquecida, .cadastro_link {
+    text-transform: uppercase;
+    color: var(--purple);
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .cadastro {
+    text-align: center;
+  }
+  .cadastro_texto {
+    color: var(--gray-light);
+  }
 </style>

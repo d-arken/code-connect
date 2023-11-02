@@ -38,6 +38,7 @@ export default{
 <template>
     <div>
         <input 
+            class="input"
             :type="type" 
             :placeholder="placeholder"
             :style="{borderColor: color}"
@@ -50,28 +51,22 @@ export default{
 </template>
 
 <style scoped>
-    div{
-        display: inline-flex;
-        flex-direction: column;
-        align-items: flex-start;
-        border-color: color;
-    }
-
-   input{
-    display: flex;
-    width: 315px;
+    .input {
+    background: var(--bg-input);
     padding: 13px 20px;
-    align-items: center;
-    gap: 24px;
-    justify-content: center;
-    border-radius: 30px;
-    background-color:#F3F5F7;
-   } 
-
-   .msg{
+    height: 50px;
     width: 100%;
-    display: flex;
-    align-items: center;
-    color: red;
-       } 
+    max-width: 600px;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+    margin-top: 20px;
+  }
+  .input::placeholder {
+    color: var(--color-placehold);
+  }
+
+  .input:focus {
+    border: 2px solid var(--outline-input);
+  }
 </style>

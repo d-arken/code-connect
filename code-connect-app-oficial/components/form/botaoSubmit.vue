@@ -1,16 +1,16 @@
 <template>
   <div>
     <input 
-    class="botao"
-    type="submit"
-    @click="enviarFormulario"
-    value="Log in">
+      class="botao"
+      type="submit"
+      @click="enviarFormulario"
+      value="Log in">
   </div>
 </template>
 
 <script>
   export default {
-    name: "botãoSubmit",
+    name: "botaoSubmit",
     methods: {
       enviarFormulario() {
         this.$emit("enviar")

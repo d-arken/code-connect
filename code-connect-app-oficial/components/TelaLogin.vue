@@ -1,16 +1,18 @@
 <template>
   <div>
-    <div class="logo">
-    </div> 
-    <form class="formulario">
-      <inputEmail @email-valido="handleEmailValid"></inputEmail>
-      <inputPassword @password-valido="handlePasswordValid"></inputPassword>
-      <p class="senhaEsquecida">Forgot Password</p>
-      <botaoSubmit @enviar="login"></botaoSubmit>
-    </form>
-    <section class="cadastro">
-      <p class="cadastro_texto">Don't have account? <router-link to="/cadastro" class="cadastro_link">Sign UP</router-link></p>
-    </section>
+    <BannerLoginCadastro>
+    </BannerLoginCadastro> 
+    <FormContainer>
+      <form>
+        <inputEmail @email-valido="handleEmailValid"></inputEmail>
+        <inputPassword @password-valido="handlePasswordValid"></inputPassword>
+        <p class="senhaEsquecida">Forgot Password</p>
+        <botaoSubmit @enviar="login"></botaoSubmit>
+      </form>
+      <section class="cadastro">
+        <p class="cadastro_texto">Don't have account? <router-link to="/cadastro" class="cadastro_link">Sign UP</router-link></p>
+      </section>
+    </FormContainer>
   </div>
 </template>
 
@@ -18,13 +20,16 @@
 import inputEmail from "./form/inputEmail.vue";
 import inputPassword from "./form/inputPassword.vue";
 import botaoSubmit from "./form/botaoSubmit.vue";
+import BannerLoginCadastro from "./banner/BannerLoginCadastro.vue"
+import FormContainer from "./container/FormContainer.vue"
 import "/assets/reset.css"
 import "/assets/global.css"
-
 
 export default {
   name: "TelaLogin",
   components: {
+    FormContainer,
+    BannerLoginCadastro,
     inputEmail,
     inputPassword,
     botaoSubmit,
@@ -58,26 +63,6 @@ export default {
 </script>
 
 <style scoped>
-  .logo {
-    height: 375px;
-    background: url(../assets/img/logo.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-    z-index: 0;
-  }
-  .formulario {
-    background: var(--white);
-    border-radius: 28px 28px 0px 0px;
-    padding-top: 20px;
-    padding-left:30px;
-    padding-right:30px;
-    margin: 0 auto;
-    text-align: center;
-    position: relative;
-    top: -35px;
-    z-index: 1;
-  }
   .senhaEsquecida, .cadastro_link {
     text-transform: uppercase;
     color: var(--purple);
@@ -86,8 +71,10 @@ export default {
   }
   .cadastro {
     text-align: center;
+    padding: 40px;
   }
   .cadastro_texto {
     color: var(--gray-light);
   }
+
 </style>

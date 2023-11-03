@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       numeroAleatorio: Math.round(Math.random() * 100) + 1,
-      tentativa: 0, // Inicialize tentativa com um valor padrão
+      tentativa: 0, 
       dica: "Número entre 1 a 100"
     };
   },
@@ -85,5 +85,4 @@ export default {
 .vermelho {
   color: red;
 }
-
 </style>

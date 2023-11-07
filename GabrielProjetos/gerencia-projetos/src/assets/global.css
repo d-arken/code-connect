@@ -1,0 +1,14 @@
+:root {
+  --white: #fff;
+  --purple: #5E60CE;
+  --bg-main: #333333;
+  --bg-cabecalho: #0D0D0D;
+  --bg-input: #262626;
+  --input-place-holder: #808080;
+  --bg-button: #1E6F9F;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  background: var(--bg-main);
+}

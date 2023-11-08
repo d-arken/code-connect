@@ -1,7 +1,7 @@
 <template> 
-  <form @submit.prevent="submitForm" class="formulario">
+  <div class="formulario">
     <slot></slot>
-  </form>
+  </div>
 </template>
 
 <script>

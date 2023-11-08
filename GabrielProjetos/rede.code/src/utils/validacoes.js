@@ -5,6 +5,10 @@ export function validarFormatoEmail(email) {
 }
 
 export function validarFormatoSenha(senha) {
+  // verifica se tem valor
+  if(!senha) {
+    return
+  }
   // Verifica o comprimento mínimo
   if (senha.length < 8) {
     return false;

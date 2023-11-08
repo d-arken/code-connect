@@ -1,89 +1,95 @@
 <template>
   <div>
-    <h1>Tela Cadastro</h1>
     <FormGroup>
-      <inputPadrao 
-        :inputType="'Email'" 
-        :input-invalido="emailInvalido"
-        :placeholder-Input="'Email'"
-        @validar="validarEmail"
-      ></inputPadrao>
-      <inputPadrao 
-        :inputType="'Email'" 
-        :input-invalido="confirmarEmailInvalido"
-        :placeholder-Input="'Confimar Email'"
-        @validar="validarConfirmarEmail"
-      ></inputPadrao>
-      <inputPadrao
-        :inputType="'password'"
-        :input-invalido="senhaInvalida"
-        :placeholder-Input="'Senha'"
-        @validar="validarSenha"
-      ></inputPadrao>
-      <div class="color-white"> <router-link to="/login">Já possui uma conta?</router-link> </div>
-      <BotaoSubmit :evento="cadastrarConta"></BotaoSubmit>
+      <h2 class="color-white">Criar conta</h2>
+      <form @submit.prevent="">
+        <inputPadrao
+          :inputType="'Email'"
+          :input-invalido="erros['email']?.invalid"
+          :placeholder-Input="'Email'"
+          @pegarValueInput="pegarValueEmail"
+        ></inputPadrao>
+        <span class="mensagem-erro">{{erros['email']?.mensagem  }}</span>
+        <inputPadrao
+          :inputType="'Email'"
+          :input-invalido="erros['confirmarEmail']?.invalid"
+          :placeholder-Input="'Confimar Email'"
+          @pegarValueInput="pegarValueConfirmarEmail"
+        ></inputPadrao>
+        <span class="mensagem-erro">{{ erros['confirmarEmail']?.mensagem }}</span>
+        <inputPadrao
+          :inputType="'password'"
+          :input-invalido="erros['senha']?.invalid"
+          :placeholder-Input="'Senha'"
+          @pegarValueInput="pegarValueSenha"
+        ></inputPadrao>
+        <span class="mensagem-erro">{{ erros['senha']?.mensagem }}</span>
+      </form>
+      <div class="color-white">
+        <router-link to="/login">Já possui uma conta?</router-link>
+      </div>
+      <BotaoSubmit :evento="validarFormulario"></BotaoSubmit>
     </FormGroup>
 
-    <div v-if="cadastroInvalido" class="mensagem-erro">
-      <p>Cadastro inválido.</p>
-      <p>Verifique se Email coincidem.</p>
+    <div v-if="false" class="mensagem-erro">
+
       <p>Senha deve conter pelo menos um número e no minimo oito caracteres.</p>
     </div>
   </div>
 </template>
 
 <script>
-import inputPadrao from '../input/inputPadrao.vue'
-import FormGroup from '../form/FormGroup.vue'
-import BotaoSubmit from "../botao/BotaoSubmit.vue"
-import { validarFormatoEmail, validarFormatoSenha } from "../../utils/validacoes"
+import inputPadrao from "../input/inputPadrao.vue";
+import FormGroup from "../form/FormGroup.vue";
+import BotaoSubmit from "../botao/BotaoSubmit.vue";
+import {
+  validarFormatoEmail,
+  validarFormatoSenha,
+} from "../../utils/validacoes";
 
 export default {
-  name: 'TelaCadastro',
+  name: "TelaCadastro",
   components: {
     inputPadrao,
     FormGroup,
-    BotaoSubmit
+    BotaoSubmit,
   },
   data() {
     return {
-      emailValue: '',
-      confirmarEmailValue:'',
-      senhaValue: '',
-      emailInvalido: false,
-      confirmarEmailInvalido: false,
-      senhaInvalida: false,
-      cadastroInvalido: false,
+      emailValue: "",
+      confirmarEmailValue: "",
+      senhaValue: "",
+      erros: {},
     };
   },
   methods: {
-    validarEmail(value) {
-      this.emailValue = value
-      this.emailInvalido = !validarFormatoEmail(value)
+    pegarValueEmail(value) {
+      this.emailValue = value;
     },
-    validarConfirmarEmail(value) {
-      this.confirmarEmailValue = value
-      this.confirmarEmailInvalido = this.confirmarEmailValue != this.emailValue && !validarFormatoEmail(value)
+    pegarValueConfirmarEmail(value) {
+      this.confirmarEmailValue = value;
     },
-    validarSenha(value) {
-      this.senhaValue = value
-      this.senhaInvalida = !validarFormatoSenha(value)
+    pegarValueSenha(value) {
+      this.senhaValue = value;
     },
     validarFormulario() {
-      return !this.emailInvalido && !this.confirmarEmailInvalido && !this.senhaInvalida
-    },
-    cadastrarConta() {
-      if(this.validarFormulario() && this.emailValue) {
-        this.$router.push("/login")
-        this.cadastroInvalido = false
-      } else {
-        console.log("login incorreto")
-        this.cadastroInvalido = true
-      } 
+      this.erros = {};
 
-    }
-  }
-}
+      if (!validarFormatoEmail(this.emailValue)) {
+        this.erros["email"] = { invalid: true, mensagem: "Insira o endereço de email no formato: nome@example.com" };
+      }
+      if (!validarFormatoEmail(this.confirmarEmailValue)) {
+        this.erros["confirmarEmail"] = { invalid: true, mensagem: "Email não coincidem"};
+      }
+      if (!validarFormatoSenha(this.senhaValue)) {
+        this.erros["senha"] = { invalid: true, mensagem: "Senha deve conter pelo menos um número e no minimo oito caracteres." };
+      }
+      if (Object.keys(this.erros).length === 0) {
+        this.$router.push("/");
+      }
+    },
+  },
+};
 </script>
 
 <style>
@@ -91,7 +97,8 @@ export default {
   color: red;
 }
 .color-white {
+  font-size: 1.3rem;
   color: white;
-  margin-top: 20px;
+  padding: 20px 0 20px 0;
 }
 </style>

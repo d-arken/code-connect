@@ -2,71 +2,77 @@
   <div>
     <h1>Tela de login</h1>
     <FormGroup>
-      <inputPadrao
-        :inputType="'email'"
-        :placeholder-input="'Email'"
-        :input-invalido="loginInvalido"
-        @validar="valorInputEmail"
-      ></inputPadrao>
-      <inputPadrao
-        :inputType="'password'"
-        :placeholder-input="'Senha'"
-        :input-invalido="loginInvalido"
-        @validar="valorInputSenha"
-      >
-      </inputPadrao>
-      <div class="color-white"> <router-link to="/cadastro">Ainda não se registrou?</router-link> </div>
+      <form>
+        <inputPadrao
+          :inputType="'email'"
+          :placeholder-input="'Email'"
+          :input-invalido="loginInvalido"
+          @pegarValueInput="valorInputEmail"
+        ></inputPadrao>
+        <inputPadrao
+          :inputType="'password'"
+          :placeholder-input="'Senha'"
+          :input-invalido="loginInvalido"
+          @pegarValueInput="valorInputSenha"
+        ></inputPadrao>
+        <span v-if="loginInvalido" class="mensagem-erro"> E-mail ou senha incorretos. </span>
+      </form>
+      <div class="color-white">
+        <router-link to="/cadastro">Ainda não se registrou?</router-link>
+      </div>
       <BotaoSubmit :evento="validarLogin"></BotaoSubmit>
     </FormGroup>
-    <div v-if="loginInvalido" class="mensagem-erro">E-mail ou senha incorretos.</div>
   </div>
 </template>
 
 <script>
-  import inputPadrao from '../input/inputPadrao.vue';
-  import FormGroup from '../form/FormGroup.vue';
-  import BotaoSubmit from "../botao/BotaoSubmit.vue"
-  export default {
-    name: "TelaLogin",
-    data(){
-      return {
-        emailValue: "",
-        senhaValue: "",
-        loginInvalido: false,
-        contas: [
+import inputPadrao from "../input/inputPadrao.vue";
+import FormGroup from "../form/FormGroup.vue";
+import BotaoSubmit from "../botao/BotaoSubmit.vue";
+export default {
+  name: "TelaLogin",
+  data() {
+    return {
+      emailValue: "",
+      senhaValue: "",
+      loginInvalido: false,
+      contas: [
         {
-          email: "digi@gmail.com", senha: "digi1234",
+          email: "digi@gmail.com",
+          senha: "digi1234",
         },
         {
-          email: "mais1code@gmail.com", senha: "mais1code"
+          email: "mais1code@gmail.com",
+          senha: "mais1code",
         },
-      ]
-      }
+      ],
+    };
+  },
+  components: {
+    inputPadrao,
+    FormGroup,
+    BotaoSubmit,
+  },
+  methods: {
+    valorInputEmail(value) {
+      this.emailValue = value;
     },
-    components: {
-      inputPadrao,
-      FormGroup,
-      BotaoSubmit
+    valorInputSenha(value) {
+      this.senhaValue = value;
     },
-    methods: {
-      valorInputEmail(value){
-        this.emailValue = value
-      },
-      valorInputSenha(value){
-        this.senhaValue = value
-      },
-      validarLogin() {
-        for(const user of this.contas) {
-          const autenticacao = user.email == this.emailValue && user.senha == this.senhaValue
-          if(autenticacao) {
-            this.loginInvalido = false
-           return this.$router.push("/")
-          }
+    validarLogin() {
+      for (const user of this.contas) {
+        const autenticacao = user.email == this.emailValue && user.senha == this.senhaValue;
+        if (autenticacao) {
+          console.log("entrou");
+          this.loginInvalido = false;
+          return this.$router.push("/");
         }
-        return this.loginInvalido = true
       }
-    }
-  }
+      return (this.loginInvalido = true);
+    },
+  },
+};
 </script>
 
 <style>

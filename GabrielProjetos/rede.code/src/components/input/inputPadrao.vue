@@ -23,7 +23,7 @@ import '../../assets/reset.css'
     },
     methods: {
       updateValue(event) {
-        this.$emit('validar', event.target.value)
+        this.$emit('pegarValueInput', event.target.value)
       }
     }
   }

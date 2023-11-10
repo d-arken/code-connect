@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  name: "TelaInicio",
+  name: "telaInicio",
 };
 </script>
 <style></style>

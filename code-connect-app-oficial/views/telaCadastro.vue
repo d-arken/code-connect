@@ -1,24 +1,24 @@
 <template>
   <div>
-    <BannerLoginCadastro>
-    </BannerLoginCadastro>
-    <FormGroup>
+    <bannerLoginCadastro>
+    </bannerLoginCadastro>
+    <formGroup>
       <form @submit.prevent="validarFormulario">
-        <InputPadrao 
+        <inputPadrao 
           :inputType="'email'"
           :input-invalido="erros['email']?.invalid"
           :placeholder-input="'Email'"
           @pegarValueInput="pegarValueEmail"
         />
         <span class="mensagem-erro">{{erros['email']?.mensagem  }}</span>
-        <InputPadrao
+        <inputPadrao
           :inputType="'email'"
           :input-invalido="erros['confirmarEmail']?.invalid"
           :placeholder-input="'Confirmar Email'"
           @pegarValueInput = "pegarConfirmarEmailValue"
         />
         <span class="mensagem-erro">{{ erros['confirmarEmail']?.mensagem }}</span>
-        <InputPadrao
+        <inputPadrao
           :inputType="'password'"
           :input-invalido="erros['senha']?.invalid"
           :placeholder-input="'Senha'"
@@ -33,24 +33,24 @@
         :valueBotao="'Cadastrar-se'"
         :evento="validarFormulario"
       />
-    </FormGroup>
+    </formGroup>
   </div>
 </template>
 <script>
-  import BannerLoginCadastro from "./banner/BannerLoginCadastro.vue";
-  import FormGroup from "./form/FormGroup.vue"
-  import InputPadrao from "./input/inputPadrao.vue";
-  import botaoPadrao from "./button/botaoPadrao.vue";
+  import bannerLoginCadastro from "../components/banner/bannerLoginCadastro.vue";
+  import formGroup from "../components/form/formGroup.vue"
+  import inputPadrao from "../components/input/inputPadrao.vue";
+  import botaoPadrao from "../components/button/botaoPadrao.vue";
   import { validarFormatoEmail, validarFormatoSenha} from "../assets/utils/validacoes"
-  import "/assets/css/reset.css"
-  import "/assets/css/global.css"
+  import "../assets/css/reset.css"
+  import "../assets/css/global.css"
 
   export default {
     name: "TelaCadastro",
     components: {
-      BannerLoginCadastro,
-      FormGroup,
-      InputPadrao,
+      bannerLoginCadastro,
+      formGroup,
+      inputPadrao,
       botaoPadrao
     },
     data() {

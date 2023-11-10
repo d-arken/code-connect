@@ -1,8 +1,8 @@
 <template>
   <div>
-    <BannerLoginCadastro>
-    </BannerLoginCadastro> 
-    <FormGroup>
+    <bannerLoginCadastro>
+    </bannerLoginCadastro> 
+    <formGroup>
       <form>
         <inputPadrao
           :inputType="'Email'"
@@ -25,23 +25,23 @@
       <section class="cadastro">
         <p class="cadastro_texto">Don't have account? <router-link to="/cadastro" class="cadastro_link">Sign UP</router-link></p>
       </section>
-    </FormGroup>
+    </formGroup>
   </div>
 </template>
 
 <script>
-import BannerLoginCadastro from "./banner/BannerLoginCadastro.vue"
-import FormGroup from "./form/FormGroup.vue"
-import inputPadrao from "./input/inputPadrao.vue"
-import botaoPadrao from "./button/botaoPadrao.vue"
-import "/assets/css/reset.css"
-import "/assets/css/global.css"
+import bannerLoginCadastro from "../components/banner/bannerLoginCadastro.vue"
+import formGroup from "../components/form/formGroup.vue"
+import inputPadrao from "../components/input/inputPadrao.vue"
+import botaoPadrao from "../components/button/botaoPadrao.vue"
+import "../assets/css/reset.css"
+import "../assets/css/global.css"
 
 export default {
   name: "TelaLogin",
   components: {
-    BannerLoginCadastro,
-    FormGroup,
+    bannerLoginCadastro,
+    formGroup,
     inputPadrao,
     botaoPadrao
   },
@@ -83,6 +83,7 @@ export default {
   }
   .cadastro_texto {
     color: var(--gray-light);
+    padding-bottom: 40px;
   }
 
 </style>

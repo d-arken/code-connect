@@ -11,12 +11,10 @@
 <script>
   export default {
     name: "botaoSubmit",
-    methods: {
-      enviarFormulario() {
-        this.$emit("enviar")
-      }
+    props: {
+      evento: enviarFormulario
     }
-  }
+    }
 </script>
 
 <style scoped>
@@ -29,5 +27,9 @@
     font-weight: 700;
     color: var(--white);
     max-width: 600px;
+  }
+  .botao:active {
+    transition: 0.3s;
+    background: rgb(82, 76, 76)
   }
 </style>

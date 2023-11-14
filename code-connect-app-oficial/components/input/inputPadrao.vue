@@ -1,18 +1,19 @@
 <template>
   <div>
     <input 
-      class="inputEmail"
-      :class="{'input-invalido': inputInvalido}"
+      class="input"
+      :class = "{'input-invalido' : inputInvalido}"
       :type="inputType"
       :placeholder="placeholderInput"
       @blur="updateValue"
       required
-    >
+      > 
   </div>
 </template>
 
 <script>
-import '../../assets/reset.css'
+import '../../assets/css/reset.css'
+import '../../assets/css/global.css'
 
   export default {
     name: "inputPadrao",
@@ -27,11 +28,12 @@ import '../../assets/reset.css'
       }
     }
   }
+
 </script>
 
 <style scoped>
-  .inputEmail {
-    background: white;
+.input {
+    background: var(--bg-input);
     padding: 13px 20px;
     height: 50px;
     width: 100%;
@@ -41,14 +43,16 @@ import '../../assets/reset.css'
     outline: none;
     margin-top: 20px;
   }
-  .inputEmail::placeholder {
+  .input::placeholder {
     color: var(--color-placehold);
   }
-  .inputEmail:focus {
+  .input:focus {
     border: 2px solid var(--outline-input);
   }
   .input-invalido {
-    border: red 2px solid;
-    background: rgb(233, 197, 197);
+    border: var(--error) 2px solid;
+  }
+  .input-invalido::placeholder {
+    color: var(--error);
   }
 </style>

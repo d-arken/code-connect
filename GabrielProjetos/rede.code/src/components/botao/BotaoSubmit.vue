@@ -3,31 +3,34 @@
     <input 
       class="botao"
       type="submit"
-      @click="enviarFormulario"
-      value="Log in">
+      @click="evento"
+      value="Enviar">
   </div>
 </template>
 
 <script>
   export default {
     name: "botaoSubmit",
-    methods: {
-      enviarFormulario() {
-        this.$emit("enviar")
-      }
+    methods: {},
+    props: {
+      evento: Function
     }
   }
 </script>
 
 <style scoped>
   .botao {
-    width: 100%;
-    background: var(--bg-button);
+    width: 50%;
+    background: rgb(180, 165, 165);
+    margin: 20px 0;
     padding: 14px 24px;
     border-radius: 30px;
     text-transform: uppercase;
     font-weight: 700;
     color: var(--white);
-    max-width: 600px;
+  }
+  .botao:active {
+    transition: 0.5s;
+    background: rgb(82, 76, 76)
   }
 </style>

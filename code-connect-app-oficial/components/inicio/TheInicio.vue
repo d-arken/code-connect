@@ -1,16 +1,16 @@
 <template>
   <div class="container-principal">
     <div class="container-cabecalho">
-      <img :src="require('./header.jpg')" class="imagem-cabecalho" />
+      <img :src="require('./header.jpg')" class="imagem-cabecalho"/>
       <div class="container-introducao">
         <div class="texto-introducao">Quem é você?</div>
         <div class="container-cartoes">
-          <img :src="require('./card1.jpg')" class="imagem-cartao-1" />
-          <img :src="require('./card2.jpg')" class="imagem-cartao-2" />
+          <img :src="require('./card1.jpg')" class="imagem-cartao-1"/>
+          <img :src="require('./card2.jpg')" class="imagem-cartao-2"/>
         </div>
         <div class="container-cartoes">
-          <img :src="require('./card3.jpg')" class="imagem-cartao-3" />
-          <img :src="require('./card4.jpg')" class="imagem-cartao-4" />
+           <img :src="require('./card3.jpg')" class="imagem-cartao-3"/> 
+          <img :src="require('./card4.jpg')" class="imagem-cartao-4"/>
         </div>
         <div class="slogan">
           <p>COMPARTILHE - INSPIRE - CONECTE</p>

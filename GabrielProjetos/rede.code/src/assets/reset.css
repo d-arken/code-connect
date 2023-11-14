@@ -1,0 +1,53 @@
+/* Reset CSS */
+
+/* Remover margens e preenchimentos padrão */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Remover decorações de texto padrão */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Padronizar estilos de lista */
+ul, ol {
+  list-style: none;
+}
+
+/* Normalizar tamanhos de fonte */
+body {
+  font-size: 16px;
+}
+
+/* Normalizar fonte e espaçamento de linha em elementos de cabeçalho */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 1em;
+  line-height: 1;
+}
+
+/* Remover estilos de botões padrão */
+button, input {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* Adicionar outras regras de reset, se necessário */
+
+/* Exemplo: Remover bordas em imagens */
+img {
+  border: none;
+}
+
+/* Exemplo: Remover estilo de fundo padrão para inputs e textareas */
+input, textarea {
+  background: transparent;
+}
+
+/* Outras personalizações conforme necessário */
+
+/* Fim do Reset CSS */

@@ -128,8 +128,7 @@ export default {
 .imagem-cartao-1:hover,
 .imagem-cartao-2:hover,
 .imagem-cartao-3:hover,
-.imagem-cartao-4:hover,
-.imagem-cartao-5:hover {
+.imagem-cartao-4:hover {
   filter: brightness(90%);
 }
 

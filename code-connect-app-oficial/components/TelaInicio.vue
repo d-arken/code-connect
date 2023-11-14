@@ -1,11 +1,16 @@
 <template>
-  <h1>Início</h1>
-  <router-link to="/cadastro">Cadastro</router-link>
-  <router-link to="/login">Login</router-link>
+  <div id="app">
+  <TheInicio/>
+  </div>
 </template>
+
 <script>
+ import TheInicio from "./inicio/TheInicio.vue";
+
 export default {
-  name: "TelaInicio",
-};
+ components: {
+   TheInicio
+ }
+  }
 </script>
-<style></style>
+

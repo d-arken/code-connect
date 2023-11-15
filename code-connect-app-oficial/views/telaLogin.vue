@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import bannerLoginCadastro from "../components/banner/bannerLoginCadastro.vue"
-import formGroup from "../components/form/formGroup.vue"
+import bannerLoginCadastro from "../components/banner/BannerLoginCadastro.vue"
+import formGroup from "../components/form/FormGroup.vue"
 import inputPadrao from "../components/input/inputPadrao.vue"
 import botaoPadrao from "../components/button/botaoPadrao.vue"
 import "../assets/css/reset.css"

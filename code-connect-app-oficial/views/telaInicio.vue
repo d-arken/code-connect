@@ -5,7 +5,7 @@
 </template>
 
 <script>
- import TheInicio from "./inicio/TheInicio.vue";
+ import TheInicio from "../components/inicio/TheInicio.vue";
 
 export default {
  components: {

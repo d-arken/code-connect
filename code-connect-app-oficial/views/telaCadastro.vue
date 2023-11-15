@@ -1,8 +1,8 @@
 <template>
   <div>
-    <bannerLoginCadastro>
-    </bannerLoginCadastro>
-    <formGroup>
+    <BannerLoginCadastro>
+    </BannerLoginCadastro>
+    <FormGroup>
       <form @submit.prevent="validarFormulario">
         <inputPadrao 
           :inputType="'email'"
@@ -33,12 +33,12 @@
         :valueBotao="'Cadastrar-se'"
         :evento="validarFormulario"
       />
-    </formGroup>
+    </FormGroup>
   </div>
 </template>
 <script>
-  import bannerLoginCadastro from "../components/banner/bannerLoginCadastro.vue";
-  import formGroup from "../components/form/formGroup.vue"
+  import BannerLoginCadastro from "../components/banner/BannerLoginCadastro.vue";
+  import FormGroup from "../components/form/FormGroup.vue";
   import inputPadrao from "../components/input/inputPadrao.vue";
   import botaoPadrao from "../components/button/botaoPadrao.vue";
   import { validarFormatoEmail, validarFormatoSenha} from "../assets/utils/validacoes"
@@ -48,8 +48,8 @@
   export default {
     name: "TelaCadastro",
     components: {
-      bannerLoginCadastro,
-      formGroup,
+      BannerLoginCadastro,
+      FormGroup,
       inputPadrao,
       botaoPadrao
     },

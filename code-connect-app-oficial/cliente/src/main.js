@@ -1,8 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import Login from "../views/telaLogin.vue";
-import Cadastro from "../views/telaCadastro.vue";
-import TelaInicio from "../views/telaInicio.vue";
+import Login from "./views/telaLogin.vue";
+import Cadastro from "./views/telaCadastro.vue";
+import TelaInicio from "./views/telaInicio.vue";
 
 import * as VueRouter from "vue-router";
 

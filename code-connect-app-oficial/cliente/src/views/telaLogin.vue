@@ -1,41 +1,46 @@
 <template>
   <div>
-    <bannerLoginCadastro>
-    </bannerLoginCadastro> 
+    <bannerLoginCadastro> </bannerLoginCadastro>
     <formGroup>
       <form>
         <inputPadrao
           :inputType="'Email'"
           :placeholder-input="'Email'"
-          :inputInvalido = "loginInvalido"
+          :inputInvalido="loginInvalido"
           @pegarValueInput="pegarEmailValue"
         />
-        <inputPadrao 
+        <inputPadrao
           :inputType="'password'"
           :placeholder-input="'Senha'"
-          :inputInvalido = "loginInvalido"
+          :inputInvalido="loginInvalido"
           @pegarValueInput="pegarSenhaValue"
         />
-        <span v-if="loginInvalido" class="mensagem-erro"> E-mail ou senha incorretos. </span>
+        <span v-if="loginInvalido" class="mensagem-erro">
+          E-mail ou senha incorretos.
+        </span>
         <p class="senhaEsquecida">Forgot Password</p>
       </form>
-      <botaoPadrao
-        :evento="validarFormulario"
-      />
+      <botaoPadrao :evento="login" />
       <section class="cadastro">
-        <p class="cadastro_texto">Don't have account? <router-link to="/cadastro" class="cadastro_link">Sign UP</router-link></p>
+        <p class="cadastro_texto">
+          Don't have account?
+          <router-link to="/cadastro" class="cadastro_link"
+            >Sign UP</router-link
+          >
+        </p>
       </section>
     </formGroup>
   </div>
 </template>
 
 <script>
-import bannerLoginCadastro from "../components/banner/BannerLoginCadastro.vue"
-import formGroup from "../components/form/FormGroup.vue"
-import inputPadrao from "../components/input/inputPadrao.vue"
-import botaoPadrao from "../components/button/botaoPadrao.vue"
-import "../assets/css/reset.css"
-import "../assets/css/global.css"
+import axios from "axios";
+import bannerLoginCadastro from "../components/banner/BannerLoginCadastro.vue";
+import formGroup from "../components/form/FormGroup.vue";
+import inputPadrao from "../components/input/inputPadrao.vue";
+import botaoPadrao from "../components/button/botaoPadrao.vue";
+import "../assets/css/reset.css";
+import "../assets/css/global.css";
 
 export default {
   name: "TelaLogin",
@@ -43,47 +48,54 @@ export default {
     bannerLoginCadastro,
     formGroup,
     inputPadrao,
-    botaoPadrao
+    botaoPadrao,
   },
   data() {
     return {
-      emailValue: "",
-      passwordValue: "",
+      dadosUsuario: {
+        email: "",
+        senha: "",
+      },
       loginInvalido: false,
-      contaValida: {
-        email: "digi@gmail.com",
-        senha: "digi1234"
-      }
     };
   },
   methods: {
     pegarEmailValue(email) {
-      this.emailValue = email;
+      this.dadosUsuario.email = email;
     },
     pegarSenhaValue(senha) {
-      this.passwordValue = senha;
+      this.dadosUsuario.senha = senha;
     },
-    validarFormulario() {
-      const autenticacao = this.emailValue == this.contaValida.email && this.passwordValue == this.contaValida.senha
-      if(!autenticacao) {
-        this.loginInvalido = true
-        return 
+    async login() {
+      try {
+        const response = await axios.post(
+          "http://localhost:3333/login",
+          this.dadosUsuario
+        );
+
+        if (response.data) {
+          localStorage.setItem("token", response.data.token);
+          console.log("Login feito!");
+          this.$router.push("/chat");
+        }
+      } catch (error) {
+        console.error("Erro ao fazer login:", error);
+        this.loginInvalido = true;
       }
-      this.$router.push("/");
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
-  .senhaEsquecida, .cadastro_link {
-    text-transform: uppercase;
-    color: var(--purple);
-    padding-top: 40px;
-  }
-  .cadastro_texto {
-    color: var(--gray-light);
-    padding-bottom: 40px;
-  }
-
+.senhaEsquecida,
+.cadastro_link {
+  text-transform: uppercase;
+  color: var(--purple);
+  padding-top: 40px;
+}
+.cadastro_texto {
+  color: var(--gray-light);
+  padding-bottom: 40px;
+}
 </style>

@@ -1,22 +1,27 @@
-export function validarFormatoEmail(email) {
-  const regexEmail = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+function validarNome(nome) {
+  const regexNome = /^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$/;
 
-  return regexEmail.test(email)
+  return regexNome.test(nome);
 }
 
-export function validarFormatoSenha(senha) {
-  // verifica se tem valor
-  if(!senha) {
-    return
+function validarFormatoEmail(email) {
+  const regexEmail = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+
+  return regexEmail.test(email);
+}
+
+function validarFormatoSenha(senha) {
+  if (!senha) {
+    return;
   }
-  // Verifica o comprimento mínimo
   if (senha.length < 8) {
     return false;
   }
-  // Verifica se contém pelo menos um número
   if (!/\d/.test(senha)) {
     return false;
   }
 
-  return true
+  return true;
 }
+
+export { validarNome, validarFormatoEmail, validarFormatoSenha };

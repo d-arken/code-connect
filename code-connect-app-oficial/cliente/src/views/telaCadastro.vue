@@ -5,24 +5,24 @@
     <FormGroup>
       <form @submit.prevent="validarFormulario">
         <inputPadrao 
-          :inputType="'email'"
-          :input-invalido="erros['email']?.invalid"
-          :placeholder-input="'Email'"
-          @pegarValueInput="pegarValueEmail"
+          :inputType="'text'"
+          :input-invalido="erros['nome']?.invalid"
+          :placeholder-input="'Nome'"
+          @pegarValueInput="pegarNome"
         />
-        <span class="mensagem-erro">{{erros['email']?.mensagem  }}</span>
+        <span class="mensagem-erro">{{erros['nome']?.mensagem  }}</span>
         <inputPadrao
           :inputType="'email'"
           :input-invalido="erros['confirmarEmail']?.invalid"
           :placeholder-input="'Confirmar Email'"
-          @pegarValueInput = "pegarConfirmarEmailValue"
+          @pegarValueInput = "pegarEmail"
         />
         <span class="mensagem-erro">{{ erros['confirmarEmail']?.mensagem }}</span>
         <inputPadrao
           :inputType="'password'"
           :input-invalido="erros['senha']?.invalid"
           :placeholder-input="'Senha'"
-          @pegarValueInput = "pegarSenhaValue"
+          @pegarValueInput = "pegarSenha"
         />
       </form>
       <span class="mensagem-erro">{{ erros['senha']?.mensagem }}</span>
@@ -41,9 +41,10 @@
   import FormGroup from "../components/form/FormGroup.vue";
   import inputPadrao from "../components/input/inputPadrao.vue";
   import botaoPadrao from "../components/button/botaoPadrao.vue";
-  import { validarFormatoEmail, validarFormatoSenha} from "../assets/utils/validacoes"
+  import { validarFormatoEmail, validarFormatoSenha, validarNome} from "../assets/utils/validacoes"
   import "../assets/css/reset.css"
   import "../assets/css/global.css"
+import axios from "axios";
 
   export default {
     name: "TelaCadastro",
@@ -55,36 +56,49 @@
     },
     data() {
       return {
-        emailValue: "",
-        confirmarEmailValue: "",
-        senhaValue: "",
+        novoUsuario: {
+          nome: "",
+          email: "",
+          senha: "",
+        },
         erros: {}
       }
     },
     methods: {
-      pegarValueEmail(value) {
-        this.emailValue = value
+      pegarNome(value) {
+        this.novoUsuario.nome = value
       },
-      pegarConfirmarEmailValue(value) {
-        this.confirmarEmailValue = value
+      pegarEmail(value) {
+        this.novoUsuario.email = value
       },
-      pegarSenhaValue(value){
-        this.senhaValue = value
+      pegarSenha(value){
+        this.novoUsuario.senha = value
+      },
+      async criarUsuario(){
+        try{
+          const response = await axios.post("http://localhost:3333/cadastro", this.novoUsuario)
+          console.log(response.data.success);
+        } catch(error) {
+          console.error("Erro ao criar conta:", error);
+        }
       },
       validarFormulario() {
         this.erros = {}
         
-        if(!validarFormatoEmail(this.emailValue)) {
+        if(!validarNome(this.novoUsuario.nome)) {
+         this.erros["nome"] = {invalid: true, mensagem: "O nome inserido é inválido."}
+        }
+        console.log(this.novoUsuario.nome);
+        if(!validarFormatoEmail(this.novoUsuario.email)) {
           this.erros["email"] = {invalid: true, mensagem: "Insira o endereço de email no formato: nome@example.com"}
         }
-        if(!validarFormatoEmail(this.confirmarEmailValue)) {
-          this.erros["confirmarEmail"] = {invalid: true, mensagem: "Email não coincidem"}
-        }
-        if(!validarFormatoSenha(this.senhaValue)) {
+        if(!validarFormatoSenha(this.novoUsuario.senha)) {
           this.erros["senha"] = {invalid: true, mensagem: "Senha deve conter pelo menos um número e no minimo oito caracteres."}
         }
+        console.log(this.senha);
         if(Object.keys(this.erros).length === 0) {
           this.$router.push("/login")
+          this.criarUsuario()
         }
       }
     },

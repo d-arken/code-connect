@@ -3,7 +3,8 @@ const createUsers = `
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR,
     email VARCHAR,
-    password VARCHAR
+    password VARCHAR,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
 `;
 

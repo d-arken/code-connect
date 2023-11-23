@@ -7,9 +7,7 @@
 
 <script>
 export default {
-  name: "Notificacao",
-};
-export default {
+  name: "NotificacaoTela",
   props: {
     variacao: String,
     mensagem: String,

@@ -3,7 +3,7 @@ const { obterMensagens, adicionarMensagemController } = require("../controllers/
 
 const routes = Router();
 
-routes.get("/obterMesagem", obterMensagens)
+routes.get("/obterMensagem", obterMensagens)
 routes.post("/adicionarMensagem", adicionarMensagemController)
 
 module.exports = routes;

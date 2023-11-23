@@ -18,14 +18,13 @@
         <span v-if="loginInvalido" class="mensagem-erro">
           E-mail ou senha incorretos.
         </span>
-        <p class="senhaEsquecida">Forgot Password</p>
       </form>
       <botaoPadrao :evento="login" />
       <section class="cadastro">
         <p class="cadastro_texto">
-          Don't have account?
+          Não tem uma conta?
           <router-link to="/cadastro" class="cadastro_link"
-            >Sign UP</router-link
+            >Cadastrar-se</router-link
           >
         </p>
       </section>
@@ -39,8 +38,7 @@ import bannerLoginCadastro from "../components/banner/BannerLoginCadastro.vue";
 import formGroup from "../components/form/FormGroup.vue";
 import inputPadrao from "../components/input/inputPadrao.vue";
 import botaoPadrao from "../components/button/botaoPadrao.vue";
-import "../assets/css/reset.css";
-import "../assets/css/global.css";
+
 
 export default {
   name: "TelaLogin",

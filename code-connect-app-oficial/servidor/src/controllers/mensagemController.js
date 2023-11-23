@@ -1,12 +1,11 @@
 const sqliteConnection = require("../database/sqlite");
 
 async function obterMensagens(req, res) {
-  const dataBase = await sqliteConnection();
+  const database = await sqliteConnection();
   try {
-    const messages = await dataBase.all(
+    const messages = await database.all(
       "SELECT * FROM messages JOIN users ON messages.user_id = users.id"
     );
-
     res.json(messages);
   } catch (error) {
     console.error("Erro ao obter mensagens:", error);
@@ -16,10 +15,10 @@ async function obterMensagens(req, res) {
 
 async function adicionarMensagemController(req, res) {
   const { content } = req.body;
-  const dataBase = await sqliteConnection();
+  const database = await sqliteConnection();
 
   try {
-    await dataBase.run(
+    await database.run(
       "INSERT INTO messages (content, user_id) VALUES (?, ?)",
       [content, req.userId]
     );

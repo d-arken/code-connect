@@ -1,6 +1,7 @@
 <template>
   <div id="app">
   <TheInicio/>
+
   </div>
 </template>
 
@@ -9,7 +10,7 @@
 
 export default {
  components: {
-   TheInicio
+   TheInicio,
    }
   }
 </script>

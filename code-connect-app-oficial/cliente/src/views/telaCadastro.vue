@@ -42,8 +42,7 @@
   import inputPadrao from "../components/input/inputPadrao.vue";
   import botaoPadrao from "../components/button/botaoPadrao.vue";
   import { validarFormatoEmail, validarFormatoSenha, validarNome} from "../assets/utils/validacoes"
-  import "../assets/css/reset.css"
-  import "../assets/css/global.css"
+
 import axios from "axios";
 
   export default {

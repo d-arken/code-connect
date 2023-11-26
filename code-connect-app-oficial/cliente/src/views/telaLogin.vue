@@ -1,6 +1,6 @@
 <template>
   <div>
-    <bannerLoginCadastro> </bannerLoginCadastro>
+    <bannerLoginCadastro/>
     <formGroup>
       <form>
         <inputPadrao

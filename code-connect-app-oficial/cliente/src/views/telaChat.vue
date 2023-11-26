@@ -92,7 +92,6 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
 .chat__form {
   background-color: var(--white);
   width: 100%;
@@ -108,7 +107,6 @@ export default {
   gap: 10px;
   max-width: 768px;
 }
-
 .chat__input {
   background-color: #e6e8e9;
   padding: 15px;
@@ -116,7 +114,6 @@ export default {
   flex-grow: 1;
   font-size: 1rem;
 }
-
 .chat__icons {
   padding: 8px;
   border-radius: 15px;

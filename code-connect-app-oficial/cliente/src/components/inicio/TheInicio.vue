@@ -1,40 +1,24 @@
 <template>
   <div class="container-principal">
     <div class="container-cabecalho">
-      <img :src="require('./header.jpg')" class="imagem-cabecalho" />
+      <img :src="require('./header.jpg')" class="imagem-cabecalho"/>
       <div class="container-introducao">
-        <div class="texto-introducao">QUEM É VOCÊ</div>
-
+        <div class="texto-introducao">Quem é você?</div>
         <div class="container-cartoes">
-          <div class="image-container">
-            <img :src="require('./card1.jpg')" class="imagem-cartao-1" />
-            <div class="image-text">FOTÓGRAFO</div>
-          </div>
-          <div class="image-container">
-            <img :src="require('./card2.jpg')" class="imagem-cartao-2" />
-            <div class="image-text">MAKINGVIDEO</div>
-          </div>
+          <img :src="require('./card1.jpg')" class="imagem-cartao-1"/>
+          <img :src="require('./card2.jpg')" class="imagem-cartao-2"/>
         </div>
-
         <div class="container-cartoes">
-          <div class="image-container">
-            <img :src="require('./card3.jpg')" class="imagem-cartao-3" />
-            <div class="image-text">DESIGN</div>
-          </div>
-          <div class="image-container">
-            <img :src="require('./card4.jpg')" class="imagem-cartao-4" />
-            <div class="image-text">ILUSTRADOR</div>
-          </div>
+           <img :src="require('./card3.jpg')" class="imagem-cartao-3"/> 
+          <img :src="require('./card4.jpg')" class="imagem-cartao-4"/>
         </div>
-
         <div class="slogan">
-          <p>DESCUBRA - INSPIRE - CONECTE</p>
+          <p>COMPARTILHE - INSPIRE - CONECTE</p>
         </div>
-
         <div class="container-explorar">
           <div class="texto-explorar">
             <router-link to="/login">
-              <input class="botao" type="submit" value="EXPLORE AGORA">
+              <input class="botao" type="submit" value="EXPLORAR AGORA">
             </router-link>
           </div>
           <div class="caixa-decorativa">
@@ -46,7 +30,6 @@
   </div>
 </template>
 
-
 <script>
 
 export default {
@@ -56,9 +39,17 @@ export default {
 </script>
 
 <style scoped>
+:root {
+  --cor-fundo: #fff;
+  --gradiente-primario: linear-gradient(271deg, #888bf4 0%, #5151c6 100%);
+  --cor-texto: #242424;
+  --cor-azul: #3498db;
+  --branco-escala-cinza: #fff;
+  --cinza-escala-cinza-4: #737982;
+}
 
 .container-principal {
-  background-color:  #fff;
+  background-color: var(--cor-fundo);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,8 +58,8 @@ export default {
 
 .container-cabecalho {
   display: flex;
-  margin-bottom: 30px;
-  width: 400px;
+  margin-bottom: 40px;
+  width: 393px;
   max-width: 100%;
   flex-direction: column;
 }
@@ -96,22 +87,12 @@ export default {
 }
 
 .texto-introducao {
-  color: #888bf4;
+  color: #000;
   font-size: 30px;
   text-align: center;
+  align-self: center;
   white-space: nowrap;
-  white-space: nowrap;
-  padding: 10px;
-  border: 1px solid #888bf4;
-  border-radius: 5px;
-  transition: all 0.3s ease-in-out;
 }
-
-.texto-introducao:hover{
-  background-color: #888bf4;
-  color: #fff;
-}
-
 
 @media (max-width: 991px) {
   .texto-introducao {
@@ -123,7 +104,7 @@ export default {
   align-self: center;
   display: flex;
   margin-top: 27px;
-  width: 400px;
+  width: 333px;
   max-width: 100%;
   justify-content: space-between;
   gap: 20px;
@@ -148,17 +129,7 @@ export default {
 .imagem-cartao-2:hover,
 .imagem-cartao-3:hover,
 .imagem-cartao-4:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
-}
-
-.botao{
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.botao:hover{
-  background-color: #5151c6;
-  transform: scale(1.05);
+  filter: brightness(90%);
 }
 
 .imagem-container {
@@ -171,32 +142,10 @@ export default {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #888bf4;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 5px;
     border-radius: 5px;
   }
-
-  .image-container{
-    position: relative;
-    display: inline-block;
-  }
-
-  .image-text{
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #888bf4;
-    padding: 5px;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .image-container:hover .image-text{
-    opacity: 1;
-  }
-
 
 .slogan {
   text-align: center;
@@ -243,7 +192,7 @@ export default {
 }
 
 .caixa-decorativa {
-  background-color: linear-gradient(271deg, #888bf4 0%, #5151c6 100%);
+  background-color: var(--gradiente-primario);
   display: flex;
   flex-direction: column;
 }
@@ -260,7 +209,7 @@ export default {
 
 .caixa-borda {
   border-radius: 100px;
-  background-color:  #737982;
+  background-color: var(--cinza-escala-cinza-4);
   display: flex;
   width: 134px;
   height: 5px;

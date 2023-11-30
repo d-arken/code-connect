@@ -1,3 +1,6 @@
+<!-- AQUI VAI SER ONDE O STORGE VAI ENTRAR -->
+
+
 <template>
   <div class="chat__mensagens">
     <div class="mensagens" v-for="(mensagem, index) in mensagens" :key="index">

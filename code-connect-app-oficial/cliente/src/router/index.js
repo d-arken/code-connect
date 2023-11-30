@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 
-import Login from "./views/telaLogin.vue";
-import Cadastro from "./views/telaCadastro.vue";
-import TelaInicio from "./views/telaInicio.vue";
-import TelaChat from "./views/telaChat.vue"
-import TelaPerfil from "./views/telaPerfil.vue"
+import Login from "../views/telaLogin.vue";
+import Cadastro from "../views/telaCadastro.vue";
+import TelaInicio from "../views/telaInicio.vue";
+import TelaChat from "../views/telaChat.vue"
+import TelaPerfil from "../views/telaPerfil.vue"
 
 const routes = [
   { path: "/", component: TelaInicio },

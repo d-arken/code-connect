@@ -1,119 +1,109 @@
-<template>
-  <div>
-    <BannerLoginCadastro>
-    </BannerLoginCadastro>
-    <FormGroup>
-      <form @submit.prevent="validarFormulario">
-        <inputPadrao 
-          :inputType="'text'"
-          :input-invalido="erros['nome']?.invalid"
-          :placeholder-input="'Nome'"
-          @pegarValueInput="pegarNome"
-        />
-        <span class="mensagem-erro">{{erros['nome']?.mensagem  }}</span>
-        <inputPadrao
-          :inputType="'email'"
-          :input-invalido="erros['confirmarEmail']?.invalid"
-          :placeholder-input="'Confirmar Email'"
-          @pegarValueInput = "pegarEmail"
-        />
-        <span class="mensagem-erro">{{ erros['confirmarEmail']?.mensagem }}</span>
-        <inputPadrao
-          :inputType="'password'"
-          :input-invalido="erros['senha']?.invalid"
-          :placeholder-input="'Senha'"
-          @pegarValueInput = "pegarSenha"
-        />
-      </form>
-      <span class="mensagem-erro">{{ erros['senha']?.mensagem }}</span>
-      <div class="padding">
-        <p>Já possui uma conta? <router-link class="link" to="/login">Log in</router-link></p>
-      </div>
-      <botaoPadrao
-        :valueBotao="'Cadastrar-se'"
-        :evento="validarFormulario"
-      />
-    </FormGroup>
-  </div>
-</template>
 <script>
-  import BannerLoginCadastro from "../components/banner/BannerLoginCadastro.vue";
-  import FormGroup from "../components/form/FormGroup.vue";
-  import inputPadrao from "../components/input/inputPadrao.vue";
-  import botaoPadrao from "../components/button/botaoPadrao.vue";
-  import { validarFormatoEmail, validarFormatoSenha, validarNome} from "../assets/utils/validacoes"
+import BannerLoginCadastro from "../components/banner/BannerLoginCadastro.vue";
+import inputPadrao from "../components/input/inputPadrao.vue";
+import botaoPadrao from "../components/button/botaoPadrao.vue";
 
-import axios from "axios";
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
 
-  export default {
-    name: "TelaCadastro",
-    components: {
-      BannerLoginCadastro,
-      FormGroup,
-      inputPadrao,
-      botaoPadrao
-    },
-    data() {
-      return {
-        novoUsuario: {
-          nome: "",
-          email: "",
-          senha: "",
-        },
-        erros: {}
+export default {
+  name: "TelaCadastro",
+  components: {
+    BannerLoginCadastro,
+    inputPadrao,
+    botaoPadrao,
+  },
+  setup() {
+    const store = useStore();
+    const cadastroInvalido = ref(false);
+    const erros  = computed(() => store.state.validacoes.erros)
+
+    const setNome = (nome) => {
+      store.commit("SET_NOME", nome);
+    };
+    const setEmail = (email) => {
+      store.commit("SET_EMAIL", email);
+    };
+    const setSenha = (senha) => {
+      store.commit("SET_SENHA", senha);
+    };
+
+    const cadastrar = async () => {
+      try {
+        await store.dispatch("fazerCadastro");
+      } catch (error) {
+        console.error("Erro ao fazer cadastro:", error);
+        cadastroInvalido.value = true
       }
-    },
-    methods: {
-      pegarNome(value) {
-        this.novoUsuario.nome = value
-      },
-      pegarEmail(value) {
-        this.novoUsuario.email = value
-      },
-      pegarSenha(value){
-        this.novoUsuario.senha = value
-      },
-      async criarUsuario(){
-        try{
-          const response = await axios.post("http://localhost:3333/cadastro", this.novoUsuario)
-          console.log(response.data.success);
-        } catch(error) {
-          console.error("Erro ao criar conta:", error);
-        }
-      },
-      validarFormulario() {
-        this.erros = {}
-        
-        if(!validarNome(this.novoUsuario.nome)) {
-         this.erros["nome"] = {invalid: true, mensagem: "O nome inserido é inválido."}
-        }
-        console.log(this.novoUsuario.nome);
-        if(!validarFormatoEmail(this.novoUsuario.email)) {
-          this.erros["email"] = {invalid: true, mensagem: "Insira o endereço de email no formato: nome@example.com"}
-        }
-        if(!validarFormatoSenha(this.novoUsuario.senha)) {
-          this.erros["senha"] = {invalid: true, mensagem: "Senha deve conter pelo menos um número e no minimo oito caracteres."}
-        }
-        console.log(this.senha);
-        if(Object.keys(this.erros).length === 0) {
-          this.$router.push("/login")
-          this.criarUsuario()
-        }
-      }
-    },
+    };
+
+    console.log(erros);
+    return {
+      setNome,
+      setEmail,
+      setSenha,
+      cadastrar,
+      erros
+    }
+  },
 };
 </script>
-<style>
+
+<template>
+  <div>
+    <BannerLoginCadastro />
+    <form class="formulario" @submit.prevent="cadastrar">
+      <inputPadrao
+        :inputType="'text'"
+        :input-invalido = "erros['nome']?.invalid"
+        :placeholder-input="'Nome'"
+        @pegarValueInput="setNome"
+      />
+      <span class="mensagem-erro">{{ erros['nome']?.mensagem }}</span>
+      <inputPadrao
+        :inputType="'email'"
+        :input-invalido = "erros['email']?.invalid"
+        :placeholder-input="'Confirmar Email'"
+        @pegarValueInput="setEmail"
+      />
+      <span class="mensagem-erro">{{ erros['email']?.mensagem }}</span>
+      <inputPadrao
+        :inputType="'password'"
+        :input-invalido = "erros['senha']?.invalid"
+        :placeholder-input="'Senha'"
+        @pegarValueInput="setSenha"
+      />
+      <span class="mensagem-erro">{{ erros['senha']?.mensagem }}</span>
+      <div class="padding">
+        <p> Já possui uma conta? <router-link class="link" to="/login">Log in</router-link></p>
+      </div>
+      <botaoPadrao :valueBotao="'Cadastrar-se'" :evento="cadastrar" />
+    </form>
+  </div>
+</template>
+<style scoped>
 .mensagem-erro {
   color: var(--error);
 }
-
 .padding {
   padding-top: 40px;
 }
-
 .link {
   text-transform: uppercase;
   color: var(--purple);
+}
+.formulario {
+  max-width: 768px;
+  background: var(--white);
+  border-radius: 28px;
+  padding: 20px 30px 0 30px;
+  margin: -40px auto 0 auto;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .formulario {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
 }
 </style>

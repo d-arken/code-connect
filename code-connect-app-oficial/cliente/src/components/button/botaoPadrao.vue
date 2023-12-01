@@ -3,7 +3,7 @@
     <input
       class="botao"
       type="submit"
-      @click="evento"
+      @submit="evento"
       :value="valueBotao"
     />
   </div>

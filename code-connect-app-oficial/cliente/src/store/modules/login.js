@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useRouter } from "vue-router";
 
 export default {
   state: {
@@ -22,14 +21,12 @@ export default {
   },
   actions: {
     async fazerLogin({ commit, state }) {
-      const router = useRouter();
       try {
         const response = await axios.post("http://localhost:3333/login", state.dadosUsuario);
 
         if(response.data) {
           localStorage.setItem("token", response.data.token);
           console.log("Login feito");
-          router.push("/chat");
         }
       } catch(error) {
         console.error("Erro ao fazer login:", error);

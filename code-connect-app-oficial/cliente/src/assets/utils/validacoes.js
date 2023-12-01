@@ -1,6 +1,10 @@
 function validarNome(nome) {
   const regexNome = /^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$/;
 
+  if (nome.length < 4) {
+    return false;
+  }
+
   return regexNome.test(nome);
 }
 
@@ -12,7 +16,7 @@ function validarFormatoEmail(email) {
 
 function validarFormatoSenha(senha) {
   if (!senha) {
-    return;
+    return false;
   }
   if (senha.length < 8) {
     return false;

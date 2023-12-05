@@ -1,5 +1,5 @@
-<template> 
-  <header class="banner"></header>
+<template>
+  <div class="imagem"></div>
 </template>
 
 <script>
@@ -10,15 +10,19 @@
 
 <style scoped>
   .banner {
-    height: 375px;
-    background: url(../../assets/img/logo.png);
-    background-size: cover;
-    background-repeat: no-repeat;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .imagem {
+    background: url(../../assets/img/banner.png) center center / cover no-repeat;
+    width: 100%;
   }
 
-  /* @media(min-width:768px)  {
-    .banner {
-      height: 100vh;
+  @media(max-width:1024px)  {
+    .imagem {
+      display: none;
     }
-  } */
+  }
 </style>

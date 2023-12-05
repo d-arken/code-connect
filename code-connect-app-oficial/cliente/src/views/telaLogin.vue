@@ -1,110 +1,120 @@
-<script>
-import bannerLoginCadastro from "../components/banner/BannerLoginCadastro.vue";
-import inputPadrao from "../components/input/inputPadrao.vue";
-import botaoPadrao from "../components/button/botaoPadrao.vue";
+<script setup>
+import BannerLoginCadastro from "../components/banner/BannerLoginCadastro.vue";
+import customInput from "../components/custom/customInput.vue";
+import customButton from "../components/custom/customButton.vue";
+import designTitulo from "../components/design/designTitulo.vue";
+
 import { useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
 import { useStore } from "vuex";
 
-export default {
-  name: "TelaLogin",
-  components: {
-    bannerLoginCadastro,
-    inputPadrao,
-    botaoPadrao,
-  },
-  setup() {
-    const store = useStore();
-    const router = useRouter();
-    const loginInvalido = ref(false);
+const store = useStore();
+const router = useRouter();
+const loginInvalid = ref(false);
 
-    onMounted(() => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        router.push("/chat");
-      }
-    });
+onMounted(() => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    router.push("/chat");
+  }
+});
 
-    const setEmail = (email) => {
-      store.commit("SET_EMAIL", email);
-    };
-    const setSenha = (senha) => {
-      store.commit("SET_SENHA", senha);
-    };
-    const login = async () => {
-      try {
-        await store.dispatch("fazerLogin");
-        const token = localStorage.getItem("token")
-        if (token) {
-          router.push("/chat");
-        } else {
-          throw new Error("Login invalido");
-        }
-      } catch (error) {
-        loginInvalido.value = true;
-        console.error("Erro ao fazer login:", error);
-      }
-    };
-
-    return {
-      setEmail,
-      setSenha,
-      loginInvalido,
-      login,
-    };
-  },
+const setEmail = (email) => {
+  store.commit("SET_EMAIL", email);
+};
+const setSenha = (senha) => {
+  store.commit("SET_SENHA", senha);
+};
+const login = async () => {
+  try {
+    await store.dispatch("fazerLogin");
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/chat");
+    } else {
+      throw new Error("Login invalido");
+    }
+  } catch (error) {
+    loginInvalid.value = true;
+    console.error("Erro ao fazer login:", error);
+  }
 };
 </script>
 
 <template>
-  <div>
-    <bannerLoginCadastro />
-    <form class="formulario" @submit.prevent="login">
-      <inputPadrao
-        :inputType="'Email'"
-        :placeholder-input="'Email'"
-        :inputInvalido="loginInvalido"
-        @pegarValueInput="setEmail"
-      />
-      <inputPadrao
-        :inputType="'password'"
-        :placeholder-input="'Senha'"
-        :inputInvalido="loginInvalido"
-        @pegarValueInput="setSenha"
-      />
-      <span v-if="loginInvalido" class="mensagem-erro">
-        E-mail ou senha incorretos.
-      </span>
-      <botaoPadrao :evento="login" />
-      <p class="cadastro_texto"> Não tem uma conta? <router-link to="/cadastro" class="cadastro_link"> Cadastrar-se </router-link>
-      </p>
-    </form>
+  <div class="login-page">
+    <div class="login-container">
+      <designTitulo />
+      <form class="login-form" @submit.prevent="login">
+        <h2 class="login-subtitle">Faça seu login</h2>
+        <customInput
+          :inputType="'Email'"
+          :placeholderInput="'Email'"
+          :inputInvalid="loginInvalid"
+          :valueInput="(e) => setEmail(e.target.value)"
+        />
+        <customInput
+          :inputType="'password'"
+          :placeholderInput="'Senha'"
+          :inputInvalid="loginInvalid"
+          :valueInput="(e) => setSenha(e.target.value)"
+        />
+        <span v-if="loginInvalid" class="mensagem-error">
+          E-mail ou senha incorretos.
+        </span>
+        <customButton :evento="login" :valueButton="'Entrar'"/>
+        <p class="cadastro_texto">
+          Não tem uma conta?
+          <router-link to="/cadastro" class="cadastro_link">
+            Cadastrar-se
+          </router-link>
+        </p>
+      </form>
+    </div>
+    <BannerLoginCadastro />
   </div>
 </template>
 
 <style scoped>
+.mensagem-error {
+  color: var(--error);
+}
+.login-page {
+  display: flex;
+  justify-content: center;
+}
+.login-subtitle {
+  font-size: 1.3rem;
+  color: var(--gray-light);
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 480px;
+  width: 100%;
+  background: var(--white);
+  text-align: center;
+  margin: 0 16px;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 .cadastro_link {
-  text-transform: uppercase;
   color: var(--purple);
-  padding-top: 40px;
+  margin-top: 40px;
 }
 .cadastro_texto {
   color: var(--gray-light);
   padding-bottom: 40px;
 }
-.formulario {
-  max-width: 768px;
-  background: var(--white);
-  border-radius: 28px;
-  padding: 20px 30px 0 30px;
-  margin: -40px auto 0 auto;
-  text-align: center;
-}
 
-@media (min-width: 768px) {
-  .formulario {
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+@media (min-width: 1024px) {
+  .login-container {
+    margin: 0 50px;
   }
 }
-
 </style>

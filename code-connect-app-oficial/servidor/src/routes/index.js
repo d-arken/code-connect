@@ -2,16 +2,14 @@ const { Router } = require("express");
 
 const extrairToken = require("../middleware/extrairToken");
 
-const loginRouter = require("./login.routes");
-const registerRouter = require("./register.routes");
-const mensagemRouter = require("./mensagem.routes");
-const perfilRouter = require("./perfil.routes")
+const usersRoutes = require("./users.routes");
+const authRoutes = require("./auth.routes");
+const mensagemRoutes = require("./mensagem.routes");
 
 const routes = Router();
 
-routes.use("/login", loginRouter);
-routes.use("/cadastro", registerRouter);
-routes.use("/mensagem", extrairToken, mensagemRouter);
-routes.use("/perfil", extrairToken, perfilRouter)
+routes.use("/users", usersRoutes);
+routes.use("/auth", authRoutes);
+routes.use("/mensagem", extrairToken, mensagemRoutes);
 
 module.exports = routes;

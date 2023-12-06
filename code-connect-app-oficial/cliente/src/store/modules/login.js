@@ -4,7 +4,7 @@ export default {
   state: {
     dadosUsuario: {
       email: "",
-      senha: "",
+      password: "",
     },
     loginInvalido: false,
   },
@@ -13,7 +13,7 @@ export default {
       state.dadosUsuario.email = email;
     },
     SET_SENHA(state, senha) {
-      state.dadosUsuario.senha = senha
+      state.dadosUsuario.password = senha
     },
     SET_LOGIN_INVALIDO(state, valor) {
       state.loginInvalido = valor
@@ -22,7 +22,7 @@ export default {
   actions: {
     async fazerLogin({ commit, state }) {
       try {
-        const response = await axios.post("http://localhost:3333/login", state.dadosUsuario);
+        const response = await axios.post("http://localhost:3333/auth", state.dadosUsuario);
 
         if(response.data) {
           localStorage.setItem("token", response.data.token);

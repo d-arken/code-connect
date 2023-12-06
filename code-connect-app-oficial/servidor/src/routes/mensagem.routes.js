@@ -1,9 +1,11 @@
 const { Router } = require("express");
-const { obterMensagens, adicionarMensagemController } = require("../controllers/mensagemController");
 
-const routes = Router();
+const MensagemController = require("../controllers/mensagemController");
 
-routes.get("/obterMensagem", obterMensagens)
-routes.post("/adicionarMensagem", adicionarMensagemController)
+const mensagemRouter = Router();
+const mensagemController = new MensagemController();
 
-module.exports = routes;
+mensagemRouter.get("/", mensagemController.fetchMessage)
+mensagemRouter.post("/", mensagemController.createMessage)
+
+module.exports = mensagemRouter

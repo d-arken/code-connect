@@ -20,7 +20,7 @@ export default {
   actions: {
     async buscarPerfil({ commit }) {
       try {
-        const response = await axios.get("http://localhost:3333/perfil", {
+        const response = await axios.get("http://localhost:3333/users", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -33,7 +33,7 @@ export default {
     async alterarPerfil({ commit }, dadosAlterados) {
       try {
         await axios.put(
-          "http://localhost:3333/perfil/alterarPerfil",
+          "http://localhost:3333/users",
           { content: dadosAlterados},
           {
             headers: {

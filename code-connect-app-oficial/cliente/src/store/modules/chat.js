@@ -14,7 +14,7 @@ export default {
     async buscarMensagens({ commit }) {
       try {
         const response = await axios.get(
-          "http://localhost:3333/mensagem/obterMensagem",
+          "http://localhost:3333/mensagem",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -29,7 +29,7 @@ export default {
     async enviarMensagem({ dispatch }, novaMensagem) {
       try {
         await axios.post(
-          "http://localhost:3333/mensagem/adicionarMensagem",
+          "http://localhost:3333/mensagem",
           { content: novaMensagem },
           {
             headers: {

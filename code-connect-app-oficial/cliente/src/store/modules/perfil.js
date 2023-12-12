@@ -40,6 +40,8 @@ export default {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
+
+          // if(res.statuscode(200))
         );
         commit('SET_DADOS_ALTERADOS', dadosAlterados)
       } catch (error) {

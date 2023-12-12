@@ -31,7 +31,7 @@ export default {
         return
       }
       try {
-        const response = await axios.post("http://localhost:3333/users/cadastro", state.dadosCadastro )
+        const response = await axios.post("http://localhost:3333/users", state.dadosCadastro )
         if(response.data.success) {
           console.log("conta criada com sucesso");
         }
